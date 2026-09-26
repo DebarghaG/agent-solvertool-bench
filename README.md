@@ -1,13 +1,55 @@
 # agent-solvertool-bench
 
-A benchmark of agent-facing Lean proof tools, comparing `lean-beam` and
-`lean-lsp-mcp` while replaying proofs from real mathematics projects. It measures
-tool latency and candidate-result agreement. Proof steps are supplied from the
-original source; no language model or proof-search policy is evaluated.
+A benchmark of the tools agents use while solving problems. The current
+experiment compares `lean-beam` and `lean-lsp-mcp` on proof replay from real Lean
+mathematics projects, measuring tool latency and candidate-result agreement.
+
+## Why benchmark the tools?
+
+An agent's performance depends on the tools inside its problem-solving loop.
+Each attempt can involve checking a candidate, interpreting feedback, updating
+state, and deciding what to try next. The time and behavior of those operations
+affect how much useful work an agent can do within a time or compute budget.
+We want to measure that part of the system directly: how quickly tools respond,
+how they behave across a sequence of interactions, and whether their feedback
+agrees on the same attempted steps.
+
+The goal is to evaluate tools on **near-real interaction traces**. Here, those
+traces are constructed by replaying existing proofs in their original project
+context: try candidates, advance the proof, and check the completed file. The
+mathematics, imports, surrounding declarations, and sequence of proof states
+come from real projects. Candidate selection is scripted, with the original
+step supplied at each point. These are controlled approximations of an agent's
+tool-use loop, not recordings of autonomous agent sessions, and they do not
+measure a model's ability to discover proofs.
+
+We are building a repeatable way to study this behavior as datasets, tools, and
+agent workflows evolve. The checked-in corpus and results are one snapshot.
+Larger or different corpora, newer tool versions, and different candidate sets
+can become further experiments, with their inputs and environment recorded so
+that changes in performance can be investigated. The current implementation
+focuses on Lean; additional tool interfaces or trace formats require adapters.
+
+## How the design serves that goal
+
+| Benchmark component | Purpose in evaluating agent tool use |
+| --- | --- |
+| Real projects and complete source files | Preserve imports, local context, and downstream declarations that can affect the cost of checking a step. |
+| Seeded file selection and REPL-based step extraction | Produce inspectable workloads that can be regenerated at pinned source revisions. |
+| Several candidates at each proof state | Exercise the feedback an agent receives when exploring alternatives. Alternatives may succeed or fail; they are not labeled as necessarily wrong. |
+| Replay along the same original proof | Give each tool the same intended sequence of states without introducing variation from a model's decisions. |
+| Handle-based and edit-based modes | Measure the effect of retaining proof state versus advancing through source edits, as well as differences between tools. |
+| Opening, step, and final-check timings | Expose both the cost of the repeated interaction loop and the surrounding work an agent must wait for. |
+| Candidate outcomes, failures, and final diagnostics | Make behavior visible alongside speed, including cases where an original step fails in isolation. |
+| Per-project, tail-latency, and source-position analysis | Show which workloads and contexts account for slow interactions that an aggregate average can hide. |
+| Saved task JSON, raw results, and provenance | Support comparisons on the same workload when tools change, and document deliberate changes to the workload itself. |
+
+The [evaluation guide](docs/EVALUATION.md) explains how to adjust the experiment,
+add datasets, compare tool versions, and keep results interpretable.
 
 ## Dataset
 
-The checked-in dataset contains **29 proofs, 132 steps, and 396 candidate attempts
+The current checked-in dataset contains **29 proofs, 132 steps, and 396 candidate attempts
 per run**, from 15 source files across four projects.
 
 | Project | Subject | Proofs | Steps | Lean version |
@@ -46,6 +88,10 @@ run. Each run has a 32 GB systemd memory cap. The harness uses one client per
 project and reuses it across that project's tasks. BEAM explicitly uses four
 Lean threads; the LSP mode inherits its environment's defaults. Tool calls have
 a 900-second timeout.
+
+These are the settings of the recorded experiment. Dataset size, proof length,
+candidate lists, resources, and repetitions can be varied as described in
+[Adjusting the evaluation](docs/EVALUATION.md#adjustable-parameters).
 
 ## Recorded results
 
@@ -127,6 +173,8 @@ benchmark run are not automated by this repository.
 
 ## Files
 
+- `docs/EVALUATION.md`: parameter reference, experiment examples, and guidance
+  for adding datasets and tool versions.
 - `work/pick_files.py`, `files*.json`: source-file selection.
 - `work/extract.py`, `tasks*.json`: task extraction and the saved dataset.
 - `work/stitch.py`, `run.sh`, `build.sh`: replay and preparation helpers.
