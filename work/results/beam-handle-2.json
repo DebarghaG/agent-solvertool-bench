@@ -1,0 +1,3203 @@
+{
+ "mode": "beam-handle",
+ "distractors": [
+  "simp",
+  "linarith"
+ ],
+ "results": [
+  {
+   "task": "pfr/PFR/Main.lean:PFR_conjecture_pos_aux",
+   "file_lines": 339,
+   "open": 5.348892853129655,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.051631016191095114,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.01864543091505766,
+       "text": "have card_AA_pos : (0 : \u211d) < (A - A).ncard := by simpa [Set.ncard_pos (hA.sub hA"
+      },
+      {
+       "ok": true,
+       "secs": 0.01818739529699087,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0147926383651793,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.05767195113003254,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.028966072015464306,
+       "text": "have KA_pos : 0 < K \u2227 (0 : \u211d) < A.ncard := by\n  have I : \u00ac (A.ncard : \u211d) < 0 := "
+      },
+      {
+       "ok": true,
+       "secs": 0.019695324823260307,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.007862337864935398,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.0693901521153748,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.004569373093545437,
+       "text": "exact \u27e8KA_pos.2, card_AA_pos, KA_pos.1\u27e9"
+      },
+      {
+       "ok": true,
+       "secs": 0.04603738011792302,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.01756415981799364,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 1.6517642671242356,
+   "final_errors": 0,
+   "total": 7.181875374633819
+  },
+  {
+   "task": "pfr/PFR/Main.lean:rdist_le_of_isUniform_of_card_sub_le",
+   "file_lines": 339,
+   "open": 1.5324749960564077,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.029387019108980894,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.012983267195522785,
+       "text": "obtain \u27e8A_pos, AA_pos, K_pos\u27e9 : (0 : \u211d) < A.ncard \u2227 (0 : \u211d) < (A - A).ncard \u2227 0 "
+      },
+      {
+       "ok": false,
+       "secs": 0.005704212002456188,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.010696067940443754,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.04313899390399456,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.011438281275331974,
+       "text": "rcases independent_copies_two U\u2080meas U\u2080meas with \u27e8\u03a9, m\u03a9, U, U', hP, hU, hU', UU'"
+      },
+      {
+       "ok": false,
+       "secs": 0.0051047359593212605,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.02565309125930071,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.07247972395271063,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.027362397871911526,
+       "text": "have Uunif : IsUniform A U := U\u2080unif.of_identDistrib idU.symm .of_discrete"
+      },
+      {
+       "ok": false,
+       "secs": 0.013102035038173199,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.03060171427205205,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.0816850308328867,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.028670197818428278,
+       "text": "have U'unif : IsUniform A U' := U\u2080unif.of_identDistrib idU'.symm .of_discrete"
+      },
+      {
+       "ok": true,
+       "secs": 0.023334132973104715,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.028562788851559162,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.14598228689283133,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.09254815569147468,
+       "text": "have IU : d[U # U'] \u2264 log K := by\n  have I : H[U - U'] \u2264 log (A - A).ncard := by"
+      },
+      {
+       "ok": true,
+       "secs": 0.023633861914277077,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.02854222897440195,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 5,
+     "wall": 0.032819936983287334,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.007103772833943367,
+       "text": "rwa [idU.rdist_congr idU'] at IU"
+      },
+      {
+       "ok": true,
+       "secs": 0.010799700859934092,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.014013112988322973,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 1.588074020575732,
+   "final_errors": 0,
+   "total": 3.5301023540087044
+  },
+  {
+   "task": "pfr/PFR/Mathlib/Probability/IdentDistrib.lean:IdentDistrib.fst_id",
+   "file_lines": 375,
+   "open": 2.9958260636776686,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.02556937886402011,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.014549165032804012,
+       "text": "have : \u03bc = (\u03bc.prod \u03bd).map Prod.fst := by simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0048081898130476475,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.006208503618836403,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.020568322390317917,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.008610022254288197,
+       "text": "nth_rewrite 2 [this]"
+      },
+      {
+       "ok": false,
+       "secs": 0.0049662720412015915,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.00623468030244112,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.027685327921062708,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.007742433808743954,
+       "text": "exact identDistrib_id_right measurable_fst.aemeasurable"
+      },
+      {
+       "ok": true,
+       "secs": 0.014115208759903908,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.005185440648347139,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.48151569720357656,
+   "final_errors": 0,
+   "total": 3.5527006089687347
+  },
+  {
+   "task": "pfr/PFR/Mathlib/Probability/IdentDistrib.lean:IdentDistrib.prodMk",
+   "file_lines": 375,
+   "open": 0.4412664659321308,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.04044862510636449,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.01691653998568654,
+       "text": "rw [indepFun_iff_map_prod_eq_prod_map_map hff'.aemeasurable_fst hgg'.aemeasurabl"
+      },
+      {
+       "ok": false,
+       "secs": 0.011845371220260859,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.011683001648634672,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.0352141922339797,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.014292506966739893,
+       "text": "rw [indepFun_iff_map_prod_eq_prod_map_map hff'.aemeasurable_snd hgg'.aemeasurabl"
+      },
+      {
+       "ok": false,
+       "secs": 0.011226982809603214,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.008535719010978937,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.04642874328419566,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.006364552304148674,
+       "text": "rw [h, h', hff'.map_eq, hgg'.map_eq]"
+      },
+      {
+       "ok": false,
+       "secs": 0.03068285109475255,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.008106451947242022,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.4495682786218822,
+   "final_errors": 0,
+   "total": 1.01492226915434
+  },
+  {
+   "task": "pfr/PFR/ForMathlib/Entropy/RuzsaDist.lean:condRuzsaDist_le'",
+   "file_lines": 1440,
+   "open": 6.493925730232149,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.07022879691794515,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.012173213064670563,
+       "text": "rw [\u2190 condRuzsaDist_of_const hX _ _ (0 : Fin 1)]"
+      },
+      {
+       "ok": false,
+       "secs": 0.01533460896462202,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0427171029150486,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.08259246125817299,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.028642102144658566,
+       "text": "refine (condRuzsaDist_le \u03bc \u03bc' hX measurable_const hY hW).trans ?_"
+      },
+      {
+       "ok": false,
+       "secs": 0.008507941849529743,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.043516996782273054,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.08198074391111732,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.00904524140059948,
+       "text": "simp [mutualInfo_const hX (0 : Fin 1)]"
+      },
+      {
+       "ok": true,
+       "secs": 0.0478968801908195,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.023282323963940144,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 1.4271342125721276,
+   "final_errors": 0,
+   "total": 8.158231114037335
+  },
+  {
+   "task": "pfr/PFR/ForMathlib/Entropy/RuzsaDist.lean:condRuzsaDist_diff_ofsum_le",
+   "file_lines": 1440,
+   "open": 0.8299527261406183,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.07142551010474563,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.026886139065027237,
+       "text": "have hadd : IndepFun (Y + Z) Z' \u03bc' :=\n  (h.indepFun_add_left (Fin.cases hY <| Fi"
+      },
+      {
+       "ok": true,
+       "secs": 0.019112664740532637,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.025423074141144753,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.060774194076657295,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.016857739072293043,
+       "text": "have h1 := condRuzsaDist_diff_le'' \u03bc hX (show Measurable (Y + Z) by fun_prop) hZ"
+      },
+      {
+       "ok": true,
+       "secs": 0.0184292527846992,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.02406621677801013,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.13864311994984746,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.031972186639904976,
+       "text": "have h2 := condRuzsaDist_diff_le \u03bc hX hY hZ (h.indepFun (show 0 \u2260 1 by decide))"
+      },
+      {
+       "ok": true,
+       "secs": 0.04757547006011009,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.057204651180654764,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.17932869121432304,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.07636683713644743,
+       "text": "linarith [h1, h2]"
+      },
+      {
+       "ok": true,
+       "secs": 0.053457026835530996,
+       "text": "simp"
+      },
+      {
+       "ok": true,
+       "secs": 0.04610123671591282,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.8811045377515256,
+   "final_errors": 0,
+   "total": 2.1661865217611194
+  },
+  {
+   "task": "carleson/Carleson/TwoSidedCarleson/NontangentialOperator.lean:_laverage_mul_measure_ball",
+   "file_lines": 1091,
+   "open": 8.162286535836756,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.05386282177641988,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.02313640294596553,
+       "text": "have : IsFiniteMeasure (volume.restrict (ball x\u2080 (n * r))) :=\n  isFiniteMeasure_"
+      },
+      {
+       "ok": false,
+       "secs": 0.0221953890286386,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.008525718003511429,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.0803957898169756,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.0185442459769547,
+       "text": "rw [\u2190 measure_mul_laverage]"
+      },
+      {
+       "ok": false,
+       "secs": 0.04918848816305399,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.010099487844854593,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.08585281716659665,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.010994565673172474,
+       "text": "simp only [MeasurableSet.univ, Measure.restrict_apply, univ_inter, mul_comm]"
+      },
+      {
+       "ok": true,
+       "secs": 0.0639120377600193,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.009380107279866934,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 5.103851757012308,
+   "final_errors": 0,
+   "total": 13.488380087073892
+  },
+  {
+   "task": "carleson/Carleson/ForestOperator/LargeSeparation.lean:four_lt_\u03c7tilde",
+   "file_lines": 2083,
+   "open": 10.546638743951917,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.035059166606515646,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.016452808864414692,
+       "text": "have := one_le_realD a"
+      },
+      {
+       "ok": false,
+       "secs": 0.010155424010008574,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.008447430096566677,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.08999012317508459,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.05123758874833584,
+       "text": "simp_rw [\u03c7tilde, indicator_of_mem xu, Real.ofNat_lt_toNNReal, lt_sub_comm, Nat.c"
+      },
+      {
+       "ok": true,
+       "secs": 0.0171149717643857,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.019725709222257137,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.06429751217365265,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.022978657856583595,
+       "text": "rw [show (8 : \u211d) - 4 = 4 by norm_num, zpow_neg, inv_mul_lt_iff\u2080' (by positivity)"
+      },
+      {
+       "ok": true,
+       "secs": 0.02857294911518693,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.010859461035579443,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.07901098113507032,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.024778572842478752,
+       "text": "exact mem_ball.mp (Grid_subset_ball xJ)"
+      },
+      {
+       "ok": true,
+       "secs": 0.03253487916663289,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.01997646177187562,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 8.381484977900982,
+   "final_errors": 0,
+   "total": 19.202211029827595
+  },
+  {
+   "task": "carleson/Carleson/ForestOperator/LargeSeparation.lean:P7_5_4_le_adjointBoundaryOperator_mul",
+   "file_lines": 2083,
+   "open": 3.4938112730160356,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.09942805534228683,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.07030623825266957,
+       "text": "have mx' : x \u2208 J := by\n  refine ((ball_subset_ball ?_).trans ball_subset_Grid) m"
+      },
+      {
+       "ok": false,
+       "secs": 0.018816534895449877,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.010301394388079643,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.04407440824434161,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.0166844897903502,
+       "text": "unfold P7_5_4 adjointBoundaryOperator"
+      },
+      {
+       "ok": true,
+       "secs": 0.015699794981628656,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.010076768230646849,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.1980974799953401,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.04114170093089342,
+       "text": "conv_lhs => enter [1]; rw [\u2190 add_zero (_ + _)]"
+      },
+      {
+       "ok": true,
+       "secs": 0.11269351467490196,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.04217932280153036,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.17003043880686164,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.026688409969210625,
+       "text": "conv_lhs => enter [2]; rw [\u2190 add_zero (_ + _)]"
+      },
+      {
+       "ok": true,
+       "secs": 0.12047706777229905,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.021490585058927536,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.2403797502629459,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.07744044391438365,
+       "text": "gcongr"
+      },
+      {
+       "ok": true,
+       "secs": 0.12249933695420623,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.038756933994591236,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 5,
+     "wall": 0.21505365194752812,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.05507958075031638,
+       "text": "exacts [biInf_le _ mx, biInf_le _ mx', zero_le, biInf_le _ mx, biInf_le _ mx', z"
+      },
+      {
+       "ok": true,
+       "secs": 0.1024780422449112,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.05593472300097346,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 3.4457625336945057,
+   "final_errors": 0,
+   "total": 7.91146739711985
+  },
+  {
+   "task": "carleson/Carleson/TileStructure.lean:smul_C2_1_2",
+   "file_lines": 629,
+   "open": 5.52992900274694,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.039421993773430586,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.018678757827728987,
+       "text": "replace hp : \ud835\udcd8 p < \ud835\udcd8 p' := hl.1.lt_of_ne hp"
+      },
+      {
+       "ok": false,
+       "secs": 0.007376287132501602,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.01336262933909893,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.1876903590746224,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.1427116570994258,
+       "text": "have : ball_(p') (\ud835\udcac p') m \u2286 ball_(p) (\ud835\udcac p) (n + C2_1_2 a * m) := fun x hx \u21a6 by\n "
+      },
+      {
+       "ok": true,
+       "secs": 0.019078360870480537,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.023380132857710123,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.065266078338027,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.021149590145796537,
+       "text": "exact \u27e8hl.1, this\u27e9"
+      },
+      {
+       "ok": true,
+       "secs": 0.025998756755143404,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.017127789091318846,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 2.018043505959213,
+   "final_errors": 0,
+   "total": 7.846818692982197
+  },
+  {
+   "task": "carleson/Carleson/TileStructure.lean:stackSize_setOf_add_stackSize_setOf_not",
+   "file_lines": 629,
+   "open": 1.2559677110984921,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.10019228374585509,
+     "true_ok": false,
+     "attempts": [
+      {
+       "ok": false,
+       "secs": 0.009378748014569283,
+       "text": "classical"
+      },
+      {
+       "ok": true,
+       "secs": 0.047776447143405676,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.043033297173678875,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.10817268583923578,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.03591453097760677,
+       "text": "simp_rw [stackSize]"
+      },
+      {
+       "ok": true,
+       "secs": 0.02354517439380288,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.048707941081374884,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.17027258407324553,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.014447802677750587,
+       "text": "conv_rhs => rw [\u2190 Finset.sum_filter_add_sum_filter_not _ P]"
+      },
+      {
+       "ok": true,
+       "secs": 0.09379075467586517,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.060260911006480455,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.21717273816466331,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.025851315818727016,
+       "text": "simp_rw [Finset.filter_filter]"
+      },
+      {
+       "ok": true,
+       "secs": 0.10924424463883042,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.07264234917238355,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.15076527604833245,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.014830686151981354,
+       "text": "congr"
+      },
+      {
+       "ok": true,
+       "secs": 0.09726677695289254,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.03766727866604924,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 1.2865878101438284,
+   "final_errors": 0,
+   "total": 3.2939752801321447
+  },
+  {
+   "task": "carleson/Carleson/ForestOperator/RemainingTiles.lean:e764_postCS",
+   "file_lines": 866,
+   "open": 6.3269208846613765,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.09551530983299017,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.03210522700101137,
+       "text": "have aem_MB : AEMeasurable (maximalFunction volume \ud835\udcd1 c\ud835\udcd1 r\ud835\udcd1 1 f) volume :=\n  meas"
+      },
+      {
+       "ok": true,
+       "secs": 0.0453494880348444,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.018055939115583897,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.1336722718551755,
+     "true_ok": false,
+     "attempts": [
+      {
+       "ok": false,
+       "secs": 0.020785443019121885,
+       "text": "classical"
+      },
+      {
+       "ok": true,
+       "secs": 0.07312977593392134,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.037522830069065094,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 1.413559109903872,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 1.3286947160959244,
+       "text": "calc\n  _ \u2264 _ := e764_preCS hu\u2081 hu\u2082 hu h2u hf\n  _ = C2_1_3 a * 2 ^ (4 * a) * \u2211 k "
+      },
+      {
+       "ok": true,
+       "secs": 0.04981393180787563,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.03504479816183448,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 2.0980197712779045,
+   "final_errors": 0,
+   "total": 10.086915052961558
+  },
+  {
+   "task": "carleson/Carleson/ForestOperator/RemainingTiles.lean:cntp_approxOnCube_eq",
+   "file_lines": 866,
+   "open": 1.3956007552333176,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.05638677394017577,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.026276167016476393,
+       "text": "set U := (\ud835\udcd8 u\u2081 : Set X)"
+      },
+      {
+       "ok": true,
+       "secs": 0.02151563996449113,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.00859133480116725,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.04743177304044366,
+     "true_ok": false,
+     "attempts": [
+      {
+       "ok": false,
+       "secs": 0.007166749332100153,
+       "text": "ext x; simp only [approxOnCube]"
+      },
+      {
+       "ok": true,
+       "secs": 0.021405255887657404,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.017174284905195236,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.1693628979846835,
+     "true_ok": false,
+     "attempts": [
+      {
+       "ok": false,
+       "secs": 0.09294758131727576,
+       "text": "classical"
+      },
+      {
+       "ok": true,
+       "secs": 0.05679890513420105,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.01961231604218483,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.2845875648781657,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.18211566703394055,
+       "text": "calc\n  _ = \u2211 p with p \u2208 \ud835\udcd9\u2086 t u\u2081, (p : Set X).indicator (fun x \u21a6 \u2a0d y in p,\n      "
+      },
+      {
+       "ok": true,
+       "secs": 0.08461418515071273,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.017853024881333113,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 1.2819350431673229,
+   "final_errors": 0,
+   "total": 3.2426151582039893
+  },
+  {
+   "task": "PrimeNumberTheoremAnd/PrimeNumberTheoremAnd/IEANTN/RosserSchoenfeld/RosserSchoenfeldPrime.lean:meisselMertensConstant_identity",
+   "file_lines": 1017,
+   "open": 8.746125768870115,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.3943158439360559,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.31675967294722795,
+       "text": "have integral_eq_loglog : \u222b y in 2..x, 1 / y / log y = log (log x) - log (log 2)"
+      },
+      {
+       "ok": true,
+       "secs": 0.05880099581554532,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.018750310875475407,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.15569794783368707,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.08368325093761086,
+       "text": "rw [eq_415 (by fun_prop (disch := grind)) hx integrableOn_deriv_inv_div_log.1\n  "
+      },
+      {
+       "ok": true,
+       "secs": 0.046019988134503365,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.023743653669953346,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.15540850488469005,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.028543812688440084,
+       "text": "ring"
+      },
+      {
+       "ok": true,
+       "secs": 0.060106636956334114,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.06464818585664034,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 1.691233109217137,
+   "final_errors": 0,
+   "total": 11.147673828992993
+  },
+  {
+   "task": "PrimeNumberTheoremAnd/PrimeNumberTheoremAnd/IEANTN/RosserSchoenfeld/RosserSchoenfeldPrime.lean:eq_419",
+   "file_lines": 1017,
+   "open": 1.6002750908955932,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.11011951416730881,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.023477892857044935,
+       "text": "simp_rw [meisselMertensConstant_identity hx, sub_eq_add_neg _ (\u222b y in Set.Ioi x,"
+      },
+      {
+       "ok": true,
+       "secs": 0.06491511594504118,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.021720552816987038,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.35073302406817675,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.2266478380188346,
+       "text": "have : \u222b (y : \u211d) in Set.Ioi x, (\u03b8 y - y) * deriv (fun s \u21a6 1 / s / Real.log s) y "
+      },
+      {
+       "ok": true,
+       "secs": 0.06934375083073974,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.05354597186669707,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.17939787404611707,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.017830769065767527,
+       "text": "congr"
+      },
+      {
+       "ok": true,
+       "secs": 0.07876232406124473,
+       "text": "simp"
+      },
+      {
+       "ok": true,
+       "secs": 0.08173654973506927,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 1.5038235522806644,
+   "final_errors": 0,
+   "total": 3.750710423104465
+  },
+  {
+   "task": "PrimeNumberTheoremAnd/PrimeNumberTheoremAnd/ZetaBounds.lean:analytic_deriv_bounded_near_point",
+   "file_lines": 3683,
+   "open": 12.497998709790409,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.0313031910918653,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.016457465011626482,
+       "text": "have U_in_filter : U \u2208 \ud835\udcdd p := by\n  exact IsOpen.mem_nhds hU hp"
+      },
+      {
+       "ok": false,
+       "secs": 0.009146665688604116,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.005695044063031673,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.046402390114963055,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.023226226679980755,
+       "text": "have T := (analyticOn_iff_differentiableOn hU).mpr hf"
+      },
+      {
+       "ok": false,
+       "secs": 0.009644364938139915,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.011608186177909374,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.0498911002650857,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.02669871272519231,
+       "text": "have T2 : ContDiffOn \u2102 1 f U :=\n    DifferentiableOn.contDiffOn hf hU"
+      },
+      {
+       "ok": false,
+       "secs": 0.009409083984792233,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.011378279887139797,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.034883389715105295,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.012569024227559566,
+       "text": "have T3 : ContinuousOn (fun x \u21a6 ((deriv f) x)) U := by\n  apply T2.continuousOn_d"
+      },
+      {
+       "ok": false,
+       "secs": 0.00581579701974988,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.012336685787886381,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.031311638187617064,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.016356023028492928,
+       "text": "have T4 := T3.continuousAt U_in_filter"
+      },
+      {
+       "ok": false,
+       "secs": 0.006713259033858776,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.006798251066356897,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 5,
+     "wall": 0.04954906599596143,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.028627238236367702,
+       "text": "have T5 : (deriv f) =O[\ud835\udcdd p] (1 : \u2102 \u2192 \u2102) :=\n  T4.norm.isBoundedUnder_le.isBigO_on"
+      },
+      {
+       "ok": false,
+       "secs": 0.006595801096409559,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.012539071962237358,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 6,
+     "wall": 0.0385342612862587,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.011655898299068213,
+       "text": "exact Asymptotics.IsBigO.mono T5 inf_le_left"
+      },
+      {
+       "ok": false,
+       "secs": 0.010737332049757242,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.013794679660350084,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 9.448057011701167,
+   "final_errors": 0,
+   "total": 22.23340280773118
+  },
+  {
+   "task": "PrimeNumberTheoremAnd/PrimeNumberTheoremAnd/ZetaBounds.lean:ZetaBnd_aux1",
+   "file_lines": 3683,
+   "open": 8.197690102737397,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.08696573600172997,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.01454625278711319,
+       "text": "rw [norm_mul, mul_div_assoc]"
+      },
+      {
+       "ok": true,
+       "secs": 0.035836531314998865,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.03657791204750538,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.1279489230364561,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.010337136685848236,
+       "text": "rw [Set.mem_Ioc] at h\u03c3"
+      },
+      {
+       "ok": true,
+       "secs": 0.054578329902142286,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.06088833790272474,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.14483485417440534,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.03222617181017995,
+       "text": "apply mul_le_mul ?_ (ZetaBnd_aux1b N Npos h\u03c3.1) (norm_nonneg _) (by positivity)"
+      },
+      {
+       "ok": true,
+       "secs": 0.05878355586901307,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.05219122674316168,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.037870415952056646,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.007267037872225046,
+       "text": "refine le_trans (by apply norm_add_le) ?_"
+      },
+      {
+       "ok": false,
+       "secs": 0.012339822016656399,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.016691209748387337,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.06172639084979892,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.007415967062115669,
+       "text": "simp only [Complex.norm_of_nonneg h\u03c3.1.le, Complex.norm_mul, norm_real, Real.nor"
+      },
+      {
+       "ok": true,
+       "secs": 0.034358473028987646,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.016759194899350405,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 5,
+     "wall": 0.07423466211184859,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.03689644206315279,
+       "text": "linarith [h\u03c3.2]"
+      },
+      {
+       "ok": false,
+       "secs": 0.014262457843869925,
+       "text": "simp"
+      },
+      {
+       "ok": true,
+       "secs": 0.02150400821119547,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 8.33385860780254,
+   "final_errors": 0,
+   "total": 17.069294455926865
+  },
+  {
+   "task": "PrimeNumberTheoremAnd/PrimeNumberTheoremAnd/IEANTN/BKLNW/BKLNW_table10_rows_regime3_6600_8500.lean:row7900_a2_le",
+   "file_lines": 1625,
+   "open": 17.283339419867843,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.018968871794641018,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.006673561874777079,
+       "text": "have h := a2_crude_le (7900 : \u211d) (by norm_num)"
+      },
+      {
+       "ok": false,
+       "secs": 0.0062911598943173885,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0060005816631019115,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.03498287685215473,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.004873007070273161,
+       "text": "have hlog2 : (0.6931471803 : \u211d) < log 2 := LogTables.log_2_gt_d9"
+      },
+      {
+       "ok": true,
+       "secs": 0.007049883715808392,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.021298390813171864,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.09869273798540235,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.026851275004446507,
+       "text": "have hfloor : (\u230a(7900 : \u211d) / log 2\u230b\u208a : \u211d) \u2264 (7900 : \u211d) / log 2 := Nat.floor_le ("
+      },
+      {
+       "ok": true,
+       "secs": 0.012059004046022892,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.05768558196723461,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.21821455005556345,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.12737535126507282,
+       "text": "have hdiv : (7900 : \u211d) / log 2 \u2264 11398 := by\n  rw [div_le_iff\u2080 (by linarith : (0"
+      },
+      {
+       "ok": true,
+       "secs": 0.015324960928410292,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.07260353211313486,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.10248541831970215,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.02291225828230381,
+       "text": "have h\u03b1 : Inputs.default.\u03b1 \u2264 1e-7 := by\n  change (1.93378e-8 * BKLNW_app.table_8"
+      },
+      {
+       "ok": true,
+       "secs": 0.015561330132186413,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0615049977786839,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 5,
+     "wall": 0.2822438199073076,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.20741595374420285,
+       "text": "calc Inputs.default.a\u2082 (7900 : \u211d)\n    \u2264 (1 + Inputs.default.\u03b1) * ((\u230a(7900 : \u211d) /"
+      },
+      {
+       "ok": true,
+       "secs": 0.010619331151247025,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.05975332297384739,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 12.714007346890867,
+   "final_errors": 0,
+   "total": 30.759790109936148
+  },
+  {
+   "task": "PrimeNumberTheoremAnd/PrimeNumberTheoremAnd/IEANTN/BKLNW/BKLNW_table10_rows_regime3_6600_8500.lean:row8000_a2_le",
+   "file_lines": 1625,
+   "open": 12.580855514854193,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.02451101876795292,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.00954138906672597,
+       "text": "have h := a2_crude_le (8000 : \u211d) (by norm_num)"
+      },
+      {
+       "ok": false,
+       "secs": 0.004436907824128866,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.010528417769819498,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.04547363193705678,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.009523773100227118,
+       "text": "have hlog2 : (0.6931471803 : \u211d) < log 2 := LogTables.log_2_gt_d9"
+      },
+      {
+       "ok": true,
+       "secs": 0.011705114040523767,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.02263975888490677,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.07216122467070818,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.012908320873975754,
+       "text": "have hfloor : (\u230a(8000 : \u211d) / log 2\u230b\u208a : \u211d) \u2264 (8000 : \u211d) / log 2 := Nat.floor_le ("
+      },
+      {
+       "ok": true,
+       "secs": 0.006090695038437843,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0507444329559803,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.19919716473668814,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.12625876674428582,
+       "text": "have hdiv : (8000 : \u211d) / log 2 \u2264 11542 := by\n  rw [div_le_iff\u2080 (by linarith : (0"
+      },
+      {
+       "ok": true,
+       "secs": 0.015177119988948107,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.05543756764382124,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.10350755183026195,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.022331085987389088,
+       "text": "have h\u03b1 : Inputs.default.\u03b1 \u2264 1e-7 := by\n  change (1.93378e-8 * BKLNW_app.table_8"
+      },
+      {
+       "ok": true,
+       "secs": 0.01504481490701437,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.06416701478883624,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 5,
+     "wall": 0.23853528685867786,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.182031552772969,
+       "text": "calc Inputs.default.a\u2082 (8000 : \u211d)\n    \u2264 (1 + Inputs.default.\u03b1) * ((\u230a(8000 : \u211d) /"
+      },
+      {
+       "ok": true,
+       "secs": 0.0092232096940279,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.043503427878022194,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 12.811917125247419,
+   "final_errors": 0,
+   "total": 26.085374243091792
+  },
+  {
+   "task": "PrimeNumberTheoremAnd/PrimeNumberTheoremAnd/IEANTN/KadiriSupport.lean:kadiri_laplace_neg_line_weight_bounded_of_continuous",
+   "file_lines": 352,
+   "open": 3.3496707160957158,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.0747811608016491,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.025922483764588833,
+       "text": "have htop := kadiri_laplace_neg_line_weight_isBigO_atTop (\u03c8 := \u03c8) (b := b) sigma"
+      },
+      {
+       "ok": true,
+       "secs": 0.029229336883872747,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.019624860025942326,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.08681165426969528,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.02606595680117607,
+       "text": "have hbot := kadiri_laplace_neg_line_weight_isBigO_atBot (\u03c8 := \u03c8) (b := b) sigma"
+      },
+      {
+       "ok": true,
+       "secs": 0.03468620404601097,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.024943870026618242,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.09747164091095328,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.03021980682387948,
+       "text": "exact bounded_of_continuous_of_isBigO_exp_atBot_atTop\n  ((laplaceKernel_contDiff"
+      },
+      {
+       "ok": true,
+       "secs": 0.03759050974622369,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.02757883071899414,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.5562988501042128,
+   "final_errors": 0,
+   "total": 4.168814030941576
+  },
+  {
+   "task": "PrimeNumberTheoremAnd/PrimeNumberTheoremAnd/IEANTN/KadiriSupport.lean:kadiri_laplace_neg_line_weight_deriv",
+   "file_lines": 352,
+   "open": 0.43765664380043745,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.12036465015262365,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.037959055975079536,
+       "text": "rw [deriv_fun_mul (kadiri_exp_neg_mul_hasDerivAt sigma y).differentiableAt\n  ((h"
+      },
+      {
+       "ok": true,
+       "secs": 0.0731721599586308,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.009229242336004972,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.09903734689578414,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.02687618602067232,
+       "text": "rw [HasDerivAt.deriv (kadiri_exp_neg_mul_hasDerivAt sigma y)]"
+      },
+      {
+       "ok": true,
+       "secs": 0.0602812459692359,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.01054075499996543,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.06611353904008865,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.018408325035125017,
+       "text": "ring"
+      },
+      {
+       "ok": true,
+       "secs": 0.03629208588972688,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.010315665043890476,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.4325687228702009,
+   "final_errors": 0,
+   "total": 1.157788020092994
+  },
+  {
+   "task": "FLT/FLT/Mathlib/Topology/Algebra/RestrictedProduct/Basic.lean:exists_apply_eq",
+   "file_lines": 318,
+   "open": 3.470003555994481,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.0423223483376205,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.009210810996592045,
+       "text": "let y : \u03a0\u02b3 i, [G i, C i]_[\u2131] := \u27e8fun i \u21a6 (Classical.ofNonempty : C i),\n  Filter."
+      },
+      {
+       "ok": false,
+       "secs": 0.029676860198378563,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.003430549055337906,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.024739389307796955,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.006473064888268709,
+       "text": "obtain \u27e8x, hx, -\u27e9 := exists_update y i a h"
+      },
+      {
+       "ok": false,
+       "secs": 0.014082346111536026,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0034092050045728683,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.023336484096944332,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.00416482612490654,
+       "text": "exact \u27e8x, hx\u27e9"
+      },
+      {
+       "ok": false,
+       "secs": 0.014454491902142763,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0038541038520634174,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.373935759998858,
+   "final_errors": 0,
+   "total": 3.9361142041161656
+  },
+  {
+   "task": "FLT/FLT/Mathlib/Topology/Algebra/RestrictedProduct/Basic.lean:mem_structureSubring_iff",
+   "file_lines": 318,
+   "open": 0.24468946876004338,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.02503107115626335,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.007876481860876083,
+       "text": "rw [RestrictedProduct.structureSubring]"
+      },
+      {
+       "ok": false,
+       "secs": 0.011398984119296074,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.00575181283056736,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.07809065375477076,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.013260676059871912,
+       "text": "change x \u2208 Set.range (RestrictedProduct.structureMap _ _ _) \u2194 _"
+      },
+      {
+       "ok": false,
+       "secs": 0.058073824271559715,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.005435202270746231,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.04041935969144106,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.005754516925662756,
+       "text": "rw [RestrictedProduct.range_structureMap]"
+      },
+      {
+       "ok": true,
+       "secs": 0.03051318461075425,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.002837042324244976,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.08472040900960565,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.06075204908847809,
+       "text": "aesop"
+      },
+      {
+       "ok": true,
+       "secs": 0.019054760690778494,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.003371588885784149,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.24385087192058563,
+   "final_errors": 0,
+   "total": 0.7191069209948182
+  },
+  {
+   "task": "FLT/FLT/Mathlib/Topology/Algebra/Module/ModuleTopology.lean:continuous_mul",
+   "file_lines": 540,
+   "open": 3.002360897604376,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.017083276994526386,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.007333951070904732,
+       "text": "let : TopologicalSpace (D \u2297[R] D) := moduleTopology R _"
+      },
+      {
+       "ok": false,
+       "secs": 0.005337090231478214,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.004407948348671198,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.017519646789878607,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.00677543506026268,
+       "text": "have : IsModuleTopology R (D \u2297[R] D) := { eq_moduleTopology' := rfl }"
+      },
+      {
+       "ok": false,
+       "secs": 0.00588981295004487,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0036946949549019337,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.039523225743323565,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.027551566250622272,
+       "text": "convert! continuous_bilinear_of_finite_left <| (LinearMap.mul R D : D \u2192\u2097[R] D \u2192\u2097"
+      },
+      {
+       "ok": false,
+       "secs": 0.006212055217474699,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.004536637105047703,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.9702053270302713,
+   "final_errors": 0,
+   "total": 4.051468324847519
+  },
+  {
+   "task": "FLT/FLT/Mathlib/Topology/Algebra/Module/ModuleTopology.lean:iff_Continuous_algebraMap",
+   "file_lines": 540,
+   "open": 0.8516839682124555,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.02444529114291072,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.015620083082467318,
+       "text": "refine \u27e8fun _ \u21a6 continuous_algebraMap R S, fun h \u21a6 ?_\u27e9"
+      },
+      {
+       "ok": false,
+       "secs": 0.0057798768393695354,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.003041875082999468,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.03288814378902316,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.02597798826172948,
+       "text": "have : Continuous (fun rs \u21a6 algebraMap R S rs.1 \u2022 rs.2 : R \u00d7 S \u2192 S) := by fun_pr"
+      },
+      {
+       "ok": false,
+       "secs": 0.002352111041545868,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0029764510691165924,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.02628634311258793,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.012476286850869656,
+       "text": "simp_rw [\u2190 algebra_compatible_smul S] at this"
+      },
+      {
+       "ok": false,
+       "secs": 0.004764797631651163,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.006949292030185461,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.01994286198168993,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.008794374763965607,
+       "text": "have : ContinuousSMul R S := \u27e8this\u27e9"
+      },
+      {
+       "ok": false,
+       "secs": 0.003980826120823622,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0059194606728851795,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.024141609203070402,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.015101728029549122,
+       "text": "exact IsTopologicalModule.mk"
+      },
+      {
+       "ok": false,
+       "secs": 0.004565612878650427,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0032985960133373737,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.8438907829113305,
+   "final_errors": 0,
+   "total": 1.8264715480618179
+  },
+  {
+   "task": "FLT/FLT/KnownIn1980s/EllipticCurves/TateParameter.lean:valuation_evalInt_eq",
+   "file_lines": 379,
+   "open": 2.956993202213198,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.07300698990002275,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.04931199224665761,
+       "text": "have hsplit : evalInt q F = q + evalInt q (F - PowerSeries.X) := by\n  conv_lhs ="
+      },
+      {
+       "ok": false,
+       "secs": 0.012503535021096468,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.011187366675585508,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.08101758500561118,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.05562964780256152,
+       "text": "have hlow : \u2200 m < 2, PowerSeries.coeff m (F - PowerSeries.X) = 0 := by\n  intro m"
+      },
+      {
+       "ok": false,
+       "secs": 0.011879274621605873,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.012257853988558054,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.08753532217815518,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.059509336948394775,
+       "text": "have hr : valuation k (evalInt q (F - PowerSeries.X)) < valuation k q :=\n  lt_of"
+      },
+      {
+       "ok": false,
+       "secs": 0.011952219065278769,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.01463730912655592,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.05311640026047826,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.007345279213041067,
+       "text": "rw [hsplit, (valuation k).map_add_eq_of_lt_left hr]"
+      },
+      {
+       "ok": false,
+       "secs": 0.028265618719160557,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.01310891518369317,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.39073388185352087,
+   "final_errors": 0,
+   "total": 3.645956780295819
+  },
+  {
+   "task": "FLT/FLT/KnownIn1980s/EllipticCurves/TateParameter.lean:evalInt_mul",
+   "file_lines": 379,
+   "open": 0.241501001175493,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.018109873868525028,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.007490575313568115,
+       "text": "let : UniformSpace k := IsTopologicalAddGroup.rightUniformSpace k"
+      },
+      {
+       "ok": false,
+       "secs": 0.004167049657553434,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.006447961088269949,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.01928247418254614,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.007963202893733978,
+       "text": "have : IsUniformAddGroup k := isUniformAddGroup_of_addCommGroup"
+      },
+      {
+       "ok": false,
+       "secs": 0.004402220249176025,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.005994485691189766,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.03394160699099302,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.02134413504973054,
+       "text": "have : IsUniformAddGroup \ud835\udcaa[k] := inferInstanceAs (IsUniformAddGroup \ud835\udcaa[k].toAddSu"
+      },
+      {
+       "ok": false,
+       "secs": 0.004575662314891815,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.006665689870715141,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.027747808024287224,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.01665152981877327,
+       "text": "have hind : Topology.IsInducing ((\u2191) : \ud835\udcaa[k] \u2192 k) := \u27e8rfl\u27e9"
+      },
+      {
+       "ok": false,
+       "secs": 0.004059641156345606,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.006434553302824497,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.034349544905126095,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.008388212881982327,
+       "text": "have h\u03c6 : Continuous (Int.castRingHom \ud835\udcaa[k]) := continuous_of_discreteTopology"
+      },
+      {
+       "ok": false,
+       "secs": 0.009098842274397612,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.01563870720565319,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 5,
+     "wall": 0.10098587162792683,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.0716667422093451,
+       "text": "have ha : PowerSeries.HasEval (\u27e8q, hq.le\u27e9 : \ud835\udcaa[k]) :=\n  hind.tendsto_nhds_iff.mpr"
+      },
+      {
+       "ok": false,
+       "secs": 0.011111622676253319,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.016932698898017406,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 6,
+     "wall": 0.13595553301274776,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.11316415574401617,
+       "text": "have key : \u2200 H : \u2124\u27e6X\u27e7, evalInt q H = (PowerSeries.eval\u2082Hom h\u03c6 ha H : k) := by\n  "
+      },
+      {
+       "ok": false,
+       "secs": 0.011678074020892382,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.008786615915596485,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 7,
+     "wall": 0.03894311003386974,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.02264894312247634,
+       "text": "simp only [key, map_mul]"
+      },
+      {
+       "ok": false,
+       "secs": 0.005928341764956713,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.009279801975935698,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 8,
+     "wall": 0.04534958302974701,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.022753055673092604,
+       "text": "push_cast"
+      },
+      {
+       "ok": true,
+       "secs": 0.009703726042062044,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.010055519174784422,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 9,
+     "wall": 0.03984783682972193,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.020295520778745413,
+       "text": "ring"
+      },
+      {
+       "ok": true,
+       "secs": 0.008823736105114222,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.009722284972667694,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 0.30821815924718976,
+   "final_errors": 0,
+   "total": 1.0479066660627723
+  },
+  {
+   "task": "FLT/FLT/Slop/PGL2/FiniteSubgroups/PartitionProof.lean:element_fixedPt_sum",
+   "file_lines": 723,
+   "open": 3.515061886049807,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.22189401322975755,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.014801550190895796,
+       "text": "intro _"
+      },
+      {
+       "ok": true,
+       "secs": 0.1086002392694354,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.09848737623542547,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.19728025700896978,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.01809251355007291,
+       "text": "refine' eq_tsub_of_add_eq _"
+      },
+      {
+       "ok": true,
+       "secs": 0.08087628800421953,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.09697085386142135,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.23545779380947351,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.06892376393079758,
+       "text": "have h_eq : \u2200 g \u2208 (Finset.univ : Finset G).erase 1, Set.ncard (fixedPoints p (g "
+      },
+      {
+       "ok": true,
+       "secs": 0.10889625828713179,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.055981169920414686,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.14571191370487213,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.025185918901115656,
+       "text": "rw [Finset.sum_congr rfl h_eq, Finset.sum_ite, Finset.sum_const, Finset.sum_cons"
+      },
+      {
+       "ok": true,
+       "secs": 0.08071815874427557,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.038134784903377295,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.21470243111252785,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.028561477083712816,
+       "text": "simp only [smul_eq_mul, mul_one]"
+      },
+      {
+       "ok": true,
+       "secs": 0.10669267503544688,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.0770911118015647,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 5,
+     "wall": 0.2338770809583366,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.05455557815730572,
+       "text": "have h_card_p : Nat.card \u21a5(((Finset.univ : Finset G).erase 1).filter (fun (x : G"
+      },
+      {
+       "ok": true,
+       "secs": 0.10391454491764307,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.07392006693407893,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 6,
+     "wall": 0.24185545137152076,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.08444808702915907,
+       "text": "have h_card_cop : Nat.card \u21a5(((Finset.univ : Finset G).erase 1).filter (fun (x :"
+      },
+      {
+       "ok": true,
+       "secs": 0.09283653926104307,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.06276535801589489,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 7,
+     "wall": 0.21536067593842745,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.03904453478753567,
+       "text": "rw [\u2190 Nat.card_eq_finsetCard, \u2190 Nat.card_eq_finsetCard, h_card_p, h_card_cop, \u2190 "
+      },
+      {
+       "ok": true,
+       "secs": 0.09782714769244194,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.07709175208583474,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 8,
+     "wall": 0.3537450870499015,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.01943188300356269,
+       "text": "omega"
+      },
+      {
+       "ok": true,
+       "secs": 0.20942342095077038,
+       "text": "simp"
+      },
+      {
+       "ok": true,
+       "secs": 0.12277319421991706,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 1.3078612401150167,
+   "final_errors": 0,
+   "total": 6.888093639165163
+  },
+  {
+   "task": "FLT/FLT/Slop/PGL2/FiniteSubgroups/PartitionProof.lean:nonsplit_D_lt_n",
+   "file_lines": 723,
+   "open": 1.1621422851458192,
+   "steps": [
+    {
+     "step": 0,
+     "wall": 0.14897187100723386,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.009548061061650515,
+       "text": "have h_n_gt_pm : Nat.card P \u2265 3 := sylow_card_ge_3 p G hG_p P"
+      },
+      {
+       "ok": true,
+       "secs": 0.09694685321301222,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.04247271688655019,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 1,
+     "wall": 0.15980798797681928,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.03204469894990325,
+       "text": "have h_n_gt_2p : Fintype.card (Sylow p G) \u2265 Nat.card P + 1 := by\n  have h_le := "
+      },
+      {
+       "ok": true,
+       "secs": 0.08180248597636819,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.04473377112299204,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 2,
+     "wall": 0.14642503904178739,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.04095221124589443,
+       "text": "have h_dvd_both : Nat.card P \u2223 Nat.card G \u2227 Fintype.card (Sylow p G) \u2223 Nat.card "
+      },
+      {
+       "ok": true,
+       "secs": 0.06885573221370578,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.03532471973448992,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 3,
+     "wall": 0.16325973719358444,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.052675181068480015,
+       "text": "have h_copr : Nat.Coprime (Fintype.card (Sylow p G) - 1) (Fintype.card (Sylow p "
+      },
+      {
+       "ok": true,
+       "secs": 0.07087924936786294,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.03711927542462945,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 4,
+     "wall": 0.15317570604383945,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.010259408969432116,
+       "text": "have h_coprime_full := Nat.Coprime.coprime_dvd_left (card_sylow_mod_card p G hG_"
+      },
+      {
+       "ok": true,
+       "secs": 0.10135392192751169,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.04021918307989836,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 5,
+     "wall": 0.17057459987699986,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.0323879006318748,
+       "text": "have h_mul_le_card : Nat.card P * Fintype.card (Sylow p G) \u2264 Nat.card G :=\n  Nat"
+      },
+      {
+       "ok": true,
+       "secs": 0.07344012940302491,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.06331958528608084,
+       "text": "linarith"
+      }
+     ]
+    },
+    {
+     "step": 6,
+     "wall": 0.22415481135249138,
+     "true_ok": true,
+     "attempts": [
+      {
+       "ok": true,
+       "secs": 0.11591471778228879,
+       "text": "nlinarith only [h_n_gt_pm, h_n_gt_2p, h_mul_le_card, Nat.sub_add_cancel (by omeg"
+      },
+      {
+       "ok": true,
+       "secs": 0.0584886260330677,
+       "text": "simp"
+      },
+      {
+       "ok": false,
+       "secs": 0.04755676491186023,
+       "text": "linarith"
+      }
+     ]
+    }
+   ],
+   "final_check": 1.2815162730403244,
+   "final_errors": 0,
+   "total": 3.6144400970079005
+  }
+ ]
+}

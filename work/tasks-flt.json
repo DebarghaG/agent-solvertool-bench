@@ -1,0 +1,286 @@
+[
+ {
+  "project": "FLT",
+  "file": "FLT/Mathlib/Topology/Algebra/RestrictedProduct/Basic.lean",
+  "theorem": "exists_apply_eq",
+  "decl_line": 228,
+  "by_line": 229,
+  "indent": 2,
+  "proof_start": 230,
+  "proof_end": 234,
+  "file_lines": 318,
+  "steps": [
+   {
+    "line": 230,
+    "text": "let y : \u03a0\u02b3 i, [G i, C i]_[\u2131] := \u27e8fun i \u21a6 (Classical.ofNonempty : C i),\n  Filter.Eventually.of_forall (fun x \u21a6 Subtype.coe_prop _)\u27e9"
+   },
+   {
+    "line": 232,
+    "text": "obtain \u27e8x, hx, -\u27e9 := exists_update y i a h"
+   },
+   {
+    "line": 233,
+    "text": "exact \u27e8x, hx\u27e9"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Mathlib/Topology/Algebra/RestrictedProduct/Basic.lean",
+  "theorem": "mem_structureSubring_iff",
+  "decl_line": 305,
+  "by_line": 309,
+  "indent": 2,
+  "proof_start": 310,
+  "proof_end": 314,
+  "file_lines": 318,
+  "steps": [
+   {
+    "line": 310,
+    "text": "rw [RestrictedProduct.structureSubring]"
+   },
+   {
+    "line": 311,
+    "text": "change x \u2208 Set.range (RestrictedProduct.structureMap _ _ _) \u2194 _"
+   },
+   {
+    "line": 312,
+    "text": "rw [RestrictedProduct.range_structureMap]"
+   },
+   {
+    "line": 313,
+    "text": "aesop"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Mathlib/Topology/Algebra/Module/ModuleTopology.lean",
+  "theorem": "continuous_mul",
+  "decl_line": 110,
+  "by_line": 110,
+  "indent": 2,
+  "proof_start": 111,
+  "proof_end": 114,
+  "file_lines": 540,
+  "steps": [
+   {
+    "line": 111,
+    "text": "let : TopologicalSpace (D \u2297[R] D) := moduleTopology R _"
+   },
+   {
+    "line": 112,
+    "text": "have : IsModuleTopology R (D \u2297[R] D) := { eq_moduleTopology' := rfl }"
+   },
+   {
+    "line": 113,
+    "text": "convert! continuous_bilinear_of_finite_left <| (LinearMap.mul R D : D \u2192\u2097[R] D \u2192\u2097[R] D)"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Mathlib/Topology/Algebra/Module/ModuleTopology.lean",
+  "theorem": "iff_Continuous_algebraMap",
+  "decl_line": 129,
+  "by_line": 130,
+  "indent": 2,
+  "proof_start": 131,
+  "proof_end": 136,
+  "file_lines": 540,
+  "steps": [
+   {
+    "line": 131,
+    "text": "refine \u27e8fun _ \u21a6 continuous_algebraMap R S, fun h \u21a6 ?_\u27e9"
+   },
+   {
+    "line": 132,
+    "text": "have : Continuous (fun rs \u21a6 algebraMap R S rs.1 \u2022 rs.2 : R \u00d7 S \u2192 S) := by fun_prop"
+   },
+   {
+    "line": 133,
+    "text": "simp_rw [\u2190 algebra_compatible_smul S] at this"
+   },
+   {
+    "line": 134,
+    "text": "have : ContinuousSMul R S := \u27e8this\u27e9"
+   },
+   {
+    "line": 135,
+    "text": "exact IsTopologicalModule.mk"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/KnownIn1980s/EllipticCurves/TateParameter.lean",
+  "theorem": "valuation_evalInt_eq",
+  "decl_line": 278,
+  "by_line": 280,
+  "indent": 2,
+  "proof_start": 281,
+  "proof_end": 294,
+  "file_lines": 379,
+  "steps": [
+   {
+    "line": 281,
+    "text": "have hsplit : evalInt q F = q + evalInt q (F - PowerSeries.X) := by\n  conv_lhs => rw [show F = PowerSeries.X + (F - PowerSeries.X) by ring]\n  rw [evalInt_add (summable_evalInt q hq _) (summable_evalInt q hq _), evalInt_X]"
+   },
+   {
+    "line": 284,
+    "text": "have hlow : \u2200 m < 2, PowerSeries.coeff m (F - PowerSeries.X) = 0 := by\n  intro m hm\n  rcases m with - | - | m\n  \u00b7 simp [PowerSeries.coeff_zero_eq_constantCoeff, h0]\n  \u00b7 simp [h1, PowerSeries.coeff_X]\n  \u00b7 exact absurd hm (by omega)"
+   },
+   {
+    "line": 290,
+    "text": "have hr : valuation k (evalInt q (F - PowerSeries.X)) < valuation k q :=\n  lt_of_le_of_lt (valuation_evalInt_le_pow q hq hlow)\n    (pow_lt_self_of_lt_one\u2080 (zero_lt_iff.mpr ((valuation k).ne_zero_iff.mpr hq0)) hq one_lt_two)"
+   },
+   {
+    "line": 293,
+    "text": "rw [hsplit, (valuation k).map_add_eq_of_lt_left hr]"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/KnownIn1980s/EllipticCurves/TateParameter.lean",
+  "theorem": "evalInt_mul",
+  "decl_line": 329,
+  "by_line": 330,
+  "indent": 2,
+  "proof_start": 331,
+  "proof_end": 348,
+  "file_lines": 379,
+  "steps": [
+   {
+    "line": 331,
+    "text": "let : UniformSpace k := IsTopologicalAddGroup.rightUniformSpace k"
+   },
+   {
+    "line": 332,
+    "text": "have : IsUniformAddGroup k := isUniformAddGroup_of_addCommGroup"
+   },
+   {
+    "line": 333,
+    "text": "have : IsUniformAddGroup \ud835\udcaa[k] := inferInstanceAs (IsUniformAddGroup \ud835\udcaa[k].toAddSubgroup)"
+   },
+   {
+    "line": 334,
+    "text": "have hind : Topology.IsInducing ((\u2191) : \ud835\udcaa[k] \u2192 k) := \u27e8rfl\u27e9"
+   },
+   {
+    "line": 335,
+    "text": "have h\u03c6 : Continuous (Int.castRingHom \ud835\udcaa[k]) := continuous_of_discreteTopology"
+   },
+   {
+    "line": 336,
+    "text": "have ha : PowerSeries.HasEval (\u27e8q, hq.le\u27e9 : \ud835\udcaa[k]) :=\n  hind.tendsto_nhds_iff.mpr (by simpa [Function.comp_def] using tendsto_pow_nhds_zero hq)"
+   },
+   {
+    "line": 338,
+    "text": "have key : \u2200 H : \u2124\u27e6X\u27e7, evalInt q H = (PowerSeries.eval\u2082Hom h\u03c6 ha H : k) := by\n  intro H\n  change (\u2211' n : \u2115, ((PowerSeries.coeff n H : \u2124) : k) * q ^ n) = _\n  rw [PowerSeries.coe_eval\u2082Hom h\u03c6 ha]\n  refine HasSum.tsum_eq ?_\n  simpa [Function.comp_def] using (PowerSeries.hasSum_eval\u2082 h\u03c6 ha H).map\n    (Subring.subtype \ud835\udcaa[k]).toAddMonoidHom continuous_subtype_val"
+   },
+   {
+    "line": 345,
+    "text": "simp only [key, map_mul]"
+   },
+   {
+    "line": 346,
+    "text": "push_cast"
+   },
+   {
+    "line": 347,
+    "text": "ring"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Slop/PGL2/FiniteSubgroups/PartitionProof.lean",
+  "theorem": "element_fixedPt_sum",
+  "decl_line": 268,
+  "by_line": 274,
+  "indent": 2,
+  "proof_start": 275,
+  "proof_end": 304,
+  "file_lines": 723,
+  "steps": [
+   {
+    "line": 275,
+    "text": "intro _"
+   },
+   {
+    "line": 276,
+    "text": "refine' eq_tsub_of_add_eq _"
+   },
+   {
+    "line": 277,
+    "text": "have h_eq : \u2200 g \u2208 (Finset.univ : Finset G).erase 1, Set.ncard (fixedPoints p (g : PGLOf (K p))) = if orderOf (g : PGLOf (K p)) = p then 1 else 2 := fun g hg \u21a6 by\n  have hg_ne : g \u2260 1 := Finset.ne_of_mem_erase hg\n  have h_dich := fixedPoints_dichotomy p (g : PGLOf (K p)) (fun h \u21a6 hg_ne (Subtype.ext h)) (Submonoid.isOfFinOrder_coe.mpr (isOfFinOrder_of_finite g))\n  split_ifs with h_p\n  \u00b7 exact h_dich.1.mpr h_p\n  \u00b7 exact h_dich.2.mpr ((element_dichotomy p G g).resolve_left h_p).symm"
+   },
+   {
+    "line": 283,
+    "text": "rw [Finset.sum_congr rfl h_eq, Finset.sum_ite, Finset.sum_const, Finset.sum_const]"
+   },
+   {
+    "line": 284,
+    "text": "simp only [smul_eq_mul, mul_one]"
+   },
+   {
+    "line": 285,
+    "text": "have h_card_p : Nat.card \u21a5(((Finset.univ : Finset G).erase 1).filter (fun (x : G) \u21a6 orderOf (x : PGLOf (K p)) = p)) = Nat.card {g : G | g \u2260 1 \u2227 orderOf (g : PGLOf (K p)) = p} := by\n  have h_set : ((((Finset.univ : Finset G).erase 1).filter (fun (x : G) \u21a6 orderOf (x : PGLOf (K p)) = p)) : Set G) = {g : G | g \u2260 1 \u2227 orderOf (g : PGLOf (K p)) = p} := by\n    ext g\n    simp only [Finset.mem_coe, Finset.mem_filter, Set.mem_ofPred_eq, Finset.mem_erase]\n    exact \u27e8fun h \u21a6 \u27e8h.1.1, h.2\u27e9, fun h \u21a6 \u27e8\u27e8h.1, Finset.mem_univ g\u27e9, h.2\u27e9\u27e9\n  exact congrArg (fun (s : Set G) \u21a6 Nat.card \u21a5s) h_set"
+   },
+   {
+    "line": 291,
+    "text": "have h_card_cop : Nat.card \u21a5(((Finset.univ : Finset G).erase 1).filter (fun (x : G) \u21a6 \u00acorderOf (x : PGLOf (K p)) = p)) = Nat.card {g : G | g \u2260 1 \u2227 Nat.Coprime (orderOf (g : PGLOf (K p))) p} := by\n  have h_set : ((((Finset.univ : Finset G).erase 1).filter (fun (x : G) \u21a6 \u00acorderOf (x : PGLOf (K p)) = p)) : Set G) = {g : G | g \u2260 1 \u2227 Nat.Coprime (orderOf (g : PGLOf (K p))) p} := by\n    ext g\n    simp only [Finset.mem_coe, Finset.mem_filter, Set.mem_ofPred_eq, Finset.mem_erase]\n    exact \u27e8fun h \u21a6 \u27e8h.1.1, (element_dichotomy p G g).resolve_left h.2\u27e9,\n           fun \u27e8h_ne, h_cop\u27e9 \u21a6 \u27e8\u27e8h_ne, Finset.mem_univ g\u27e9, fun h_p \u21a6 by\n             rw [h_p] at h_cop\n             have : Nat.gcd p p = p := Nat.gcd_self p\n             have : p > 2 := Fact.out\n             omega\u27e9\u27e9\n  exact congrArg (fun (s : Set G) \u21a6 Nat.card \u21a5s) h_set"
+   },
+   {
+    "line": 302,
+    "text": "rw [\u2190 Nat.card_eq_finsetCard, \u2190 Nat.card_eq_finsetCard, h_card_p, h_card_cop, \u2190 count_elements_order_p p G hG_p P, element_partition_count p G]"
+   },
+   {
+    "line": 303,
+    "text": "omega"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Slop/PGL2/FiniteSubgroups/PartitionProof.lean",
+  "theorem": "nonsplit_D_lt_n",
+  "decl_line": 332,
+  "by_line": 335,
+  "indent": 2,
+  "proof_start": 336,
+  "proof_end": 355,
+  "file_lines": 723,
+  "steps": [
+   {
+    "line": 336,
+    "text": "have h_n_gt_pm : Nat.card P \u2265 3 := sylow_card_ge_3 p G hG_p P"
+   },
+   {
+    "line": 337,
+    "text": "have h_n_gt_2p : Fintype.card (Sylow p G) \u2265 Nat.card P + 1 := by\n  have h_le := Nat.le_of_dvd (Nat.sub_pos_of_lt hn_p_gt1) (card_sylow_mod_card p G hG_p P)\n  omega"
+   },
+   {
+    "line": 340,
+    "text": "have h_dvd_both : Nat.card P \u2223 Nat.card G \u2227 Fintype.card (Sylow p G) \u2223 Nat.card G := by\n  refine \u27e8Subgroup.card_subgroup_dvd_card (P : Subgroup G), ?_\u27e9\n  rw [\u2190 Nat.card_eq_fintype_card, Nat.card_congr (Sylow.equivQuotientNormalizer P)]\n  exact Subgroup.card_quotient_dvd_card (Subgroup.normalizer ((P : Subgroup G) : Set G))"
+   },
+   {
+    "line": 344,
+    "text": "have h_copr : Nat.Coprime (Fintype.card (Sylow p G) - 1) (Fintype.card (Sylow p G)) := by\n  apply Nat.coprime_of_dvd\n  intro k h1 h2 h3\n  have h_dvd : k \u2223 Fintype.card (Sylow p G) - (Fintype.card (Sylow p G) - 1) := Nat.dvd_sub h3 h2\n  have h_k_eq_1 : k = 1 := Nat.eq_one_of_dvd_one <| (by omega : Fintype.card (Sylow p G) - (Fintype.card (Sylow p G) - 1) = 1) \u25b8 h_dvd\n  subst h_k_eq_1\n  exact Nat.not_prime_one h1"
+   },
+   {
+    "line": 351,
+    "text": "have h_coprime_full := Nat.Coprime.coprime_dvd_left (card_sylow_mod_card p G hG_p P) h_copr"
+   },
+   {
+    "line": 352,
+    "text": "have h_mul_le_card : Nat.card P * Fintype.card (Sylow p G) \u2264 Nat.card G :=\n  Nat.le_of_dvd Nat.card_pos (Nat.Coprime.mul_dvd_of_dvd_of_dvd h_coprime_full h_dvd_both.1 h_dvd_both.2)"
+   },
+   {
+    "line": 354,
+    "text": "nlinarith only [h_n_gt_pm, h_n_gt_2p, h_mul_le_card, Nat.sub_add_cancel (by omega : 2 \u2264 Nat.card P)]"
+   }
+  ]
+ }
+]

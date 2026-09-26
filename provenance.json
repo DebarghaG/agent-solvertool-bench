@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "snapshot_date": "2026-09-25",
+  "environment": {
+    "platform": "Linux",
+    "architecture": "aarch64",
+    "python": "3.12.3"
+  },
+  "projects": {
+    "pfr": {
+      "repository": "https://github.com/teorth/pfr",
+      "commit": "ddd44f6ce82ef48624e468662e0fbeb5e37e4026",
+      "lean_toolchain": "leanprover/lean4:v4.35.0-rc2"
+    },
+    "carleson": {
+      "repository": "https://github.com/fpvandoorn/carleson",
+      "commit": "493c9ecd2a10ce121a3e8224d7630289a5984ac8",
+      "lean_toolchain": "leanprover/lean4:v4.34.0-rc2"
+    },
+    "PrimeNumberTheoremAnd": {
+      "repository": "https://github.com/AlexKontorovich/PrimeNumberTheoremAnd",
+      "commit": "55270df807213fc3584523d09e0311d7dc073ff5",
+      "lean_toolchain": "leanprover/lean4:v4.33.1"
+    },
+    "FLT": {
+      "repository": "https://github.com/ImperialCollegeLondon/FLT",
+      "commit": "322a2dba9101d2160869b7bded68c249da207821",
+      "lean_toolchain": "leanprover/lean4:v4.35.0-rc2"
+    }
+  },
+  "beam": {
+    "repository": "https://github.com/DebarghaG/lean-beam",
+    "source_commit": "ebc99402ed612d38a1b6b684809e970868c81fae",
+    "payload_hash": "270425497f6baf694c96f93461d598ed5bea49dae1e506211b089ae8f4960dee",
+    "created_with_toolchains": [
+      "leanprover/lean4:v4.33.1",
+      "leanprover/lean4:v4.34.0-rc2",
+      "leanprover/lean4:v4.35.0-rc2"
+    ],
+    "python_helper_commit": "ebc99402ed612d38a1b6b684809e970868c81fae"
+  },
+  "repl": {
+    "repl-v4.33.1": {
+      "repository": "https://github.com/leanprover-community/repl",
+      "commit": "bbeedf38e0898869fc3b7c009e1ea877b46204e4",
+      "lean_toolchain": "leanprover/lean4:v4.33.1",
+      "local_patch": "diff --git a/lean-toolchain b/lean-toolchain\nindex 025e595..a8afa7d 100644\n--- a/lean-toolchain\n+++ b/lean-toolchain\n@@ -1 +1 @@\n-leanprover/lean4:v4.33.0\n+leanprover/lean4:v4.33.1"
+    },
+    "repl-v4.34.0-rc2": {
+      "repository": "https://github.com/leanprover-community/repl",
+      "commit": "5d5c49d13dfc0c1d2df43a27c3e56e02ad81b9c3",
+      "lean_toolchain": "leanprover/lean4:v4.34.0-rc2",
+      "local_patch": ""
+    },
+    "repl-v4.35.0-rc2": {
+      "repository": "https://github.com/leanprover-community/repl",
+      "commit": "646a77338cfee0d09219688efffe122650cee73a",
+      "lean_toolchain": "leanprover/lean4:v4.35.0-rc2",
+      "local_patch": ""
+    }
+  },
+  "python_packages": {
+    "lean-lsp-mcp": "0.30.0",
+    "mcp": "2.0.0"
+  },
+  "experiment": {
+    "tasks": 29,
+    "steps": 132,
+    "candidate_attempts_per_run": 396,
+    "distractors": [
+      "simp",
+      "linarith"
+    ],
+    "run_order": [
+      "beam-handle",
+      "beam-edit",
+      "lsp",
+      "beam-handle-2"
+    ],
+    "memory_max": "32G",
+    "tool_call_timeout_seconds": 900,
+    "beam_lean_threads": 4,
+    "file_sample_seed": 0,
+    "task_sample_seed": 0
+  }
+}

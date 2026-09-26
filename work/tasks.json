@@ -1,0 +1,907 @@
+[
+ {
+  "project": "pfr",
+  "file": "PFR/Main.lean",
+  "theorem": "PFR_conjecture_pos_aux",
+  "decl_line": 92,
+  "by_line": 94,
+  "indent": 2,
+  "proof_start": 95,
+  "proof_end": 100,
+  "file_lines": 339,
+  "steps": [
+   {
+    "line": 95,
+    "text": "have card_AA_pos : (0 : \u211d) < (A - A).ncard := by simpa [Set.ncard_pos (hA.sub hA)]"
+   },
+   {
+    "line": 96,
+    "text": "have KA_pos : 0 < K \u2227 (0 : \u211d) < A.ncard := by\n  have I : \u00ac (A.ncard : \u211d) < 0 := by simp\n  simpa [Nat.cast_pos, I, and_false, or_false] using mul_pos_iff.1 (card_AA_pos.trans_le hAK)"
+   },
+   {
+    "line": 99,
+    "text": "exact \u27e8KA_pos.2, card_AA_pos, KA_pos.1\u27e9"
+   }
+  ]
+ },
+ {
+  "project": "pfr",
+  "file": "PFR/Main.lean",
+  "theorem": "rdist_le_of_isUniform_of_card_sub_le",
+  "decl_line": 114,
+  "by_line": 118,
+  "indent": 2,
+  "proof_start": 119,
+  "proof_end": 134,
+  "file_lines": 339,
+  "steps": [
+   {
+    "line": 119,
+    "text": "obtain \u27e8A_pos, AA_pos, K_pos\u27e9 : (0 : \u211d) < A.ncard \u2227 (0 : \u211d) < (A - A).ncard \u2227 0 < K :=\n  PFR_conjecture_pos_aux A.toFinite hA\u2080 hA"
+   },
+   {
+    "line": 121,
+    "text": "rcases independent_copies_two U\u2080meas U\u2080meas with \u27e8\u03a9, m\u03a9, U, U', hP, hU, hU', UU'_indep, idU, idU'\u27e9"
+   },
+   {
+    "line": 122,
+    "text": "have Uunif : IsUniform A U := U\u2080unif.of_identDistrib idU.symm .of_discrete"
+   },
+   {
+    "line": 123,
+    "text": "have U'unif : IsUniform A U' := U\u2080unif.of_identDistrib idU'.symm .of_discrete"
+   },
+   {
+    "line": 124,
+    "text": "have IU : d[U # U'] \u2264 log K := by\n  have I : H[U - U'] \u2264 log (A - A).ncard := by\n    apply entropy_le_log_card_of_mem_finite (Set.Finite.sub A_fin A_fin) (hU.sub hU')\n    filter_upwards [Uunif.ae_mem, U'unif.ae_mem] with \u03c9 h1 h2\n    exact Set.sub_mem_sub h1 h2\n  have J : log (A - A).ncard \u2264 log K + log A.ncard := by\n    rw [\u2190 log_mul K_pos.ne' A_pos.ne']; gcongr\n  rw [UU'_indep.rdist_eq hU hU', Uunif.entropy_eq' A_fin hU, U'unif.entropy_eq' A_fin hU']\n  linarith"
+   },
+   {
+    "line": 133,
+    "text": "rwa [idU.rdist_congr idU'] at IU"
+   }
+  ]
+ },
+ {
+  "project": "pfr",
+  "file": "PFR/Mathlib/Probability/IdentDistrib.lean",
+  "theorem": "IdentDistrib.fst_id",
+  "decl_line": 37,
+  "by_line": 39,
+  "indent": 2,
+  "proof_start": 40,
+  "proof_end": 43,
+  "file_lines": 375,
+  "steps": [
+   {
+    "line": 40,
+    "text": "have : \u03bc = (\u03bc.prod \u03bd).map Prod.fst := by simp"
+   },
+   {
+    "line": 41,
+    "text": "nth_rewrite 2 [this]"
+   },
+   {
+    "line": 42,
+    "text": "exact identDistrib_id_right measurable_fst.aemeasurable"
+   }
+  ]
+ },
+ {
+  "project": "pfr",
+  "file": "PFR/Mathlib/Probability/IdentDistrib.lean",
+  "theorem": "IdentDistrib.prodMk",
+  "decl_line": 124,
+  "by_line": 129,
+  "indent": 4,
+  "proof_start": 130,
+  "proof_end": 133,
+  "file_lines": 375,
+  "steps": [
+   {
+    "line": 130,
+    "text": "rw [indepFun_iff_map_prod_eq_prod_map_map hff'.aemeasurable_fst hgg'.aemeasurable_fst] at h"
+   },
+   {
+    "line": 131,
+    "text": "rw [indepFun_iff_map_prod_eq_prod_map_map hff'.aemeasurable_snd hgg'.aemeasurable_snd] at h'"
+   },
+   {
+    "line": 132,
+    "text": "rw [h, h', hff'.map_eq, hgg'.map_eq]"
+   }
+  ]
+ },
+ {
+  "project": "pfr",
+  "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+  "theorem": "condRuzsaDist_le'",
+  "decl_line": 1320,
+  "by_line": 1324,
+  "indent": 2,
+  "proof_start": 1325,
+  "proof_end": 1328,
+  "file_lines": 1440,
+  "steps": [
+   {
+    "line": 1325,
+    "text": "rw [\u2190 condRuzsaDist_of_const hX _ _ (0 : Fin 1)]"
+   },
+   {
+    "line": 1326,
+    "text": "refine (condRuzsaDist_le \u03bc \u03bc' hX measurable_const hY hW).trans ?_"
+   },
+   {
+    "line": 1327,
+    "text": "simp [mutualInfo_const hX (0 : Fin 1)]"
+   }
+  ]
+ },
+ {
+  "project": "pfr",
+  "file": "PFR/ForMathlib/Entropy/RuzsaDist.lean",
+  "theorem": "condRuzsaDist_diff_ofsum_le",
+  "decl_line": 1427,
+  "by_line": 1433,
+  "indent": 2,
+  "proof_start": 1434,
+  "proof_end": 1440,
+  "file_lines": 1440,
+  "steps": [
+   {
+    "line": 1434,
+    "text": "have hadd : IndepFun (Y + Z) Z' \u03bc' :=\n  (h.indepFun_add_left (Fin.cases hY <| Fin.cases hZ <| Fin.cases hZ' Fin.rec0) 0 1 2\n    (show 0 \u2260 2 by decide) (show 1 \u2260 2 by decide))"
+   },
+   {
+    "line": 1437,
+    "text": "have h1 := condRuzsaDist_diff_le'' \u03bc hX (show Measurable (Y + Z) by fun_prop) hZ' hadd"
+   },
+   {
+    "line": 1438,
+    "text": "have h2 := condRuzsaDist_diff_le \u03bc hX hY hZ (h.indepFun (show 0 \u2260 1 by decide))"
+   },
+   {
+    "line": 1439,
+    "text": "linarith [h1, h2]"
+   }
+  ]
+ },
+ {
+  "project": "carleson",
+  "file": "Carleson/TwoSidedCarleson/NontangentialOperator.lean",
+  "theorem": "_laverage_mul_measure_ball",
+  "decl_line": 29,
+  "by_line": 30,
+  "indent": 2,
+  "proof_start": 31,
+  "proof_end": 35,
+  "file_lines": 1091,
+  "steps": [
+   {
+    "line": 31,
+    "text": "have : IsFiniteMeasure (volume.restrict (ball x\u2080 (n * r))) :=\n  isFiniteMeasure_restrict.mpr measure_ball_lt_top.ne"
+   },
+   {
+    "line": 33,
+    "text": "rw [\u2190 measure_mul_laverage]"
+   },
+   {
+    "line": 34,
+    "text": "simp only [MeasurableSet.univ, Measure.restrict_apply, univ_inter, mul_comm]"
+   }
+  ]
+ },
+ {
+  "project": "carleson",
+  "file": "Carleson/ForestOperator/LargeSeparation.lean",
+  "theorem": "four_lt_\u03c7tilde",
+  "decl_line": 52,
+  "by_line": 52,
+  "indent": 2,
+  "proof_start": 53,
+  "proof_end": 57,
+  "file_lines": 2083,
+  "steps": [
+   {
+    "line": 53,
+    "text": "have := one_le_realD a"
+   },
+   {
+    "line": 54,
+    "text": "simp_rw [\u03c7tilde, indicator_of_mem xu, Real.ofNat_lt_toNNReal, lt_sub_comm, Nat.cast_ofNat]"
+   },
+   {
+    "line": 55,
+    "text": "rw [show (8 : \u211d) - 4 = 4 by norm_num, zpow_neg, inv_mul_lt_iff\u2080' (by positivity)]"
+   },
+   {
+    "line": 56,
+    "text": "exact mem_ball.mp (Grid_subset_ball xJ)"
+   }
+  ]
+ },
+ {
+  "project": "carleson",
+  "file": "Carleson/ForestOperator/LargeSeparation.lean",
+  "theorem": "P7_5_4_le_adjointBoundaryOperator_mul",
+  "decl_line": 1526,
+  "by_line": 1528,
+  "indent": 2,
+  "proof_start": 1529,
+  "proof_end": 1537,
+  "file_lines": 2083,
+  "steps": [
+   {
+    "line": 1529,
+    "text": "have mx' : x \u2208 J := by\n  refine ((ball_subset_ball ?_).trans ball_subset_Grid) mx\n  change _ \u2264 (D : \u211d) ^ s J / 4; rw [div_eq_inv_mul]; gcongr; norm_num"
+   },
+   {
+    "line": 1532,
+    "text": "unfold P7_5_4 adjointBoundaryOperator"
+   },
+   {
+    "line": 1533,
+    "text": "conv_lhs => enter [1]; rw [\u2190 add_zero (_ + _)]"
+   },
+   {
+    "line": 1534,
+    "text": "conv_lhs => enter [2]; rw [\u2190 add_zero (_ + _)]"
+   },
+   {
+    "line": 1535,
+    "text": "gcongr"
+   },
+   {
+    "line": 1536,
+    "text": "exacts [biInf_le _ mx, biInf_le _ mx', zero_le, biInf_le _ mx, biInf_le _ mx', zero_le]"
+   }
+  ]
+ },
+ {
+  "project": "carleson",
+  "file": "Carleson/TileStructure.lean",
+  "theorem": "smul_C2_1_2",
+  "decl_line": 231,
+  "by_line": 232,
+  "indent": 2,
+  "proof_start": 233,
+  "proof_end": 245,
+  "file_lines": 629,
+  "steps": [
+   {
+    "line": 233,
+    "text": "replace hp : \ud835\udcd8 p < \ud835\udcd8 p' := hl.1.lt_of_ne hp"
+   },
+   {
+    "line": 234,
+    "text": "have : ball_(p') (\ud835\udcac p') m \u2286 ball_(p) (\ud835\udcac p) (n + C2_1_2 a * m) := fun x hx \u21a6 by\n  rw [@mem_ball] at hx \u22a2\n  calc\n    _ \u2264 dist_(p) x (\ud835\udcac p') + dist_(p) (\ud835\udcac p') (\ud835\udcac p) := dist_triangle ..\n    _ \u2264 C2_1_2 a * dist_(p') x (\ud835\udcac p') + dist_(p) (\ud835\udcac p') (\ud835\udcac p) := by\n      gcongr; exact Grid.dist_strictMono hp\n    _ < C2_1_2 a * m + dist_(p) (\ud835\udcac p') (\ud835\udcac p) := by gcongr; rw [C2_1_2]; positivity\n    _ < _ := by\n      rw [add_comm]; gcongr\n      exact mem_ball.mp <| mem_of_mem_of_subset (by convert! mem_ball_self hk) hl.2"
+   },
+   {
+    "line": 244,
+    "text": "exact \u27e8hl.1, this\u27e9"
+   }
+  ]
+ },
+ {
+  "project": "carleson",
+  "file": "Carleson/TileStructure.lean",
+  "theorem": "stackSize_setOf_add_stackSize_setOf_not",
+  "decl_line": 418,
+  "by_line": 419,
+  "indent": 2,
+  "proof_start": 420,
+  "proof_end": 425,
+  "file_lines": 629,
+  "steps": [
+   {
+    "line": 420,
+    "text": "classical"
+   },
+   {
+    "line": 421,
+    "text": "simp_rw [stackSize]"
+   },
+   {
+    "line": 422,
+    "text": "conv_rhs => rw [\u2190 Finset.sum_filter_add_sum_filter_not _ P]"
+   },
+   {
+    "line": 423,
+    "text": "simp_rw [Finset.filter_filter]"
+   },
+   {
+    "line": 424,
+    "text": "congr"
+   }
+  ]
+ },
+ {
+  "project": "carleson",
+  "file": "Carleson/ForestOperator/RemainingTiles.lean",
+  "theorem": "e764_postCS",
+  "decl_line": 628,
+  "by_line": 633,
+  "indent": 2,
+  "proof_start": 634,
+  "proof_end": 697,
+  "file_lines": 866,
+  "steps": [
+   {
+    "line": 634,
+    "text": "have aem_MB : AEMeasurable (maximalFunction volume \ud835\udcd1 c\ud835\udcd1 r\ud835\udcd1 1 f) volume :=\n  measurable_maximalFunction.aemeasurable"
+   },
+   {
+    "line": 636,
+    "text": "classical"
+   },
+   {
+    "line": 637,
+    "text": "calc\n  _ \u2264 _ := e764_preCS hu\u2081 hu\u2082 hu h2u hf\n  _ = C2_1_3 a * 2 ^ (4 * a) * \u2211 k \u2208 Finset.Icc \u230aC7_6_3 a n\u230b (2 * S),\n      (\u2211 J \u2208 (\ud835\udcd9\u2086 t u\u2081).toFinset, (volume (J : Set X))\u207b\u00b9 *\n      (\u222b\u207b y in J, maximalFunction volume \ud835\udcd1 c\ud835\udcd1 r\ud835\udcd1 1 f y *\n      \u2211 I with s I = s J - k \u2227 Disjoint (I : Set X) (\ud835\udcd8 u\u2081) \u2227\n        \u00acDisjoint \u2191J (ball (c I) (8 * D ^ s I)),\n      (ball (c I) (8 * D ^ s I)).indicator 1 y) ^ 2) ^ (2 : \u211d)\u207b\u00b9 := by\n    congr! with k mk J mJ\n    rw [\u2190 lintegral_finsetSum']; swap\n    \u00b7 fun_prop (discharger := measurability)\n    congr with y; rw [mul_comm, Finset.sum_mul]\n  _ \u2264 C2_1_3 a * 2 ^ (4 * a) * \u2211 k \u2208 Finset.Icc \u230aC7_6_3 a n\u230b (2 * S),\n      (\u2211 J \u2208 (\ud835\udcd9\u2086 t u\u2081).toFinset, (\u222b\u207b y in J, maximalFunction volume \ud835\udcd1 c\ud835\udcd1 r\ud835\udcd1 1 f y ^ 2) *\n      (\u2a0d\u207b y in J, (\u2211 I : Grid X with s I = s J - k \u2227 Disjoint (I : Set X) (\ud835\udcd8 u\u2081) \u2227\n        \u00acDisjoint \u2191J (ball (c I) (8 * D ^ s I)),\n      (ball (c I) (8 * D ^ s I)).indicator 1 y) ^ 2 \u2202volume)) ^ (2 : \u211d)\u207b\u00b9 := by\n    gcongr _ * \u2211 k \u2208 _, (\u2211 J \u2208 _, ?_) ^ _ with k mk J mJ\n    rw [setLAverage_eq, ENNReal.div_eq_inv_mul, \u2190 mul_assoc, mul_comm _ _\u207b\u00b9, mul_assoc]\n    gcongr; apply ENNReal.sq_lintegral_mul_le_mul_lintegral_sq aem_MB.restrict -- Cauchy\u2013Schwarz\n    fun_prop (discharger := measurability)\n  _ \u2264 C2_1_3 a * 2 ^ (4 * a) * \u2211 k \u2208 Finset.Icc \u230aC7_6_3 a n\u230b (2 * S),\n      (\u2211 J \u2208 (\ud835\udcd9\u2086 t u\u2081).toFinset,\n      (\u222b\u207b y in J, maximalFunction volume \ud835\udcd1 c\ud835\udcd1 r\ud835\udcd1 1 f y ^ 2) * C7_6_4 a k) ^ (2 : \u211d)\u207b\u00b9 := by\n    gcongr with k mk J mJ; rw [mem_toFinset] at mJ; exact square_function_count mJ\n  _ \u2264 C2_1_3 a * 2 ^ (4 * a) *\n      \u2211 k \u2208 Finset.Icc \u230aC7_6_3 a n\u230b (2 * S),\n      2 ^ (7 * a + 2) * D ^ (-k * \u03ba / 2) * (\u2211 J \u2208 (\ud835\udcd9\u2086 t u\u2081).toFinset,\n      \u222b\u207b y in J, maximalFunction volume \ud835\udcd1 c\ud835\udcd1 r\ud835\udcd1 1 f y ^ 2) ^ (2 : \u211d)\u207b\u00b9 := by\n    gcongr with k mk\n    rw [\u2190 Finset.sum_mul, mul_comm _ (C7_6_4 a k : \u211d\u22650\u221e),\n      ENNReal.mul_rpow_of_nonneg _ _ (by positivity)]\n    gcongr\n    rw [C7_6_4, NNReal.mul_rpow, show (8 : \u211d\u22650) = 2 ^ (3 : \u211d) by norm_num, \u2190 NNReal.rpow_mul,\n      \u2190 mul_assoc, \u2190 NNReal.rpow_intCast, \u2190 NNReal.rpow_mul,\n      ENNReal.rpow_ofNNReal (by positivity), NNReal.mul_rpow, \u2190 NNReal.rpow_mul,\n      \u2190 NNReal.rpow_add two_ne_zero, \u2190 NNReal.rpow_mul, ENNReal.coe_mul,\n      ENNReal.coe_rpow_of_ne_zero two_ne_zero, \u2190 show (2 : \u211d\u22650\u221e) = (2 : \u211d\u22650) by rfl,\n      ENNReal.coe_rpow_of_ne_zero (by norm_cast; unfold defaultD; positivity),\n      show ((D : \u211d\u22650) : \u211d\u22650\u221e) = (D : \u211d\u22650\u221e) by rfl, Int.cast_neg, div_eq_mul_inv,\n      \u2190 ENNReal.rpow_natCast]\n    gcongr\n    \u00b7 exact one_le_two\n    \u00b7 rw [add_assoc, add_mul, Nat.cast_add, Nat.cast_mul, show (14 * a * 2\u207b\u00b9 : \u211d) = 7 * a by ring,\n        Nat.cast_ofNat]\n      gcongr\n      calc\n        _ \u2264 (1 + 3 * 1) * (2 : \u211d)\u207b\u00b9 := by gcongr; exact \u03ba_le_one\n        _ = _ := by norm_num\n  _ = _ := by\n    rw [\u2190 Finset.sum_mul, \u2190 Finset.mul_sum, \u2190 mul_assoc, \u2190 mul_assoc, mul_assoc _ (_ ^ _) (_ ^ _),\n      \u2190 pow_add, show 4 * a + (7 * a + 2) = 11 * a + 2 by lia]\n    congr; rw [\u2190 lintegral_biUnion_finset _ fun _ _ \u21a6 coeGrid_measurable]; swap\n    \u00b7 rw [coe_toFinset]; exact pairwiseDisjoint_\ud835\udcd9\u2086\n    simp_rw [mem_toFinset, union_\ud835\udcd9\u2086 hu\u2081, \u2190 lintegral_indicator coeGrid_measurable,\n      eLpNorm_eq_lintegral_rpow_enorm_toReal two_ne_zero ENNReal.ofNat_ne_top,\n      ENNReal.toReal_ofNat, one_div, show (2 : \u211d) = (2 : \u2115) by rfl, ENNReal.rpow_natCast,\n      enorm_eq_self]\n    congr! with x\n    simp_rw [sq, \u2190 inter_indicator_mul, inter_self]"
+   }
+  ]
+ },
+ {
+  "project": "carleson",
+  "file": "Carleson/ForestOperator/RemainingTiles.lean",
+  "theorem": "cntp_approxOnCube_eq",
+  "decl_line": 775,
+  "by_line": 778,
+  "indent": 2,
+  "proof_start": 779,
+  "proof_end": 813,
+  "file_lines": 866,
+  "steps": [
+   {
+    "line": 779,
+    "text": "set U := (\ud835\udcd8 u\u2081 : Set X)"
+   },
+   {
+    "line": 780,
+    "text": "ext x; simp only [approxOnCube]"
+   },
+   {
+    "line": 781,
+    "text": "classical"
+   },
+   {
+    "line": 782,
+    "text": "calc\n  _ = \u2211 p with p \u2208 \ud835\udcd9\u2086 t u\u2081, (p : Set X).indicator (fun x \u21a6 \u2a0d y in p,\n      \u2016U.indicator (adjointCarlesonSum (t u\u2082 \\ \ud835\udd16\u2080 t u\u2081 u\u2082) f\u2082) y\u2016) x := by\n    apply (Finset.sum_subset (fun p mp \u21a6 ?_) (fun p mp np \u21a6 ?_)).symm\n    \u00b7 rw [Finset.mem_filter_univ] at mp \u22a2\n      exact mp.1\n    \u00b7 rw [Finset.mem_filter_univ] at mp np\n      rw [indicator_apply_eq_zero]; intro mx\n      rw [show (0 : \u211d) = \u2a0d y in (p : Set X), 0 by simp]\n      refine setAverage_congr_fun coeGrid_measurable (.of_forall fun y my \u21a6 ?_)\n      suffices Disjoint (p : Set X) U by\n        rw [indicator_of_notMem (this.notMem_of_mem_left my), norm_zero]\n      -- There has to be a cube `I \u2208 \ud835\udcd9\u2086` (the one containing `c (\ud835\udcd8 u\u2081)`)\n      have cm : c (\ud835\udcd8 u\u2081) \u2208 (\ud835\udcd8 u\u2081 : Set X) := Grid.c_mem_Grid\n      rw [\u2190 union_\ud835\udcd9\u2086 hu\u2081, mem_iUnion\u2082] at cm; obtain \u27e8I, mI, hI\u27e9 := cm\n      -- Obviously `I \u2260 p`\n      have nIp : I \u2260 p := ne_of_mem_of_not_mem mI np\n      -- If `U` intersected `p`, `U \u2264 p` since `p \u2209 \ud835\udcd9\u2086`\n      by_contra! h\n      rw [\ud835\udcd9\u2086, mem_inter_iff, not_and, mem_Iic] at np; specialize np mp\n      have Ulp := le_or_ge_or_disjoint.resolve_left np |>.resolve_right h\n      -- `I`, being in `\ud835\udcd9\u2086`, should be a maximal cube in `\ud835\udcd9\u2080 \ud835\udd16`,\n      -- but `p` is above it and also in `\ud835\udcd9\u2080 \ud835\udd16`; contradiction\n      rw [\ud835\udcd9\u2086, mem_inter_iff, mem_Iic] at mI\n      rw [\ud835\udcd9, mem_ofPred] at mp mI\n      exact nIp <| le_antisymm (mI.2.trans Ulp) (mI.1.2 mp.1 (mI.2.trans Ulp))\n  _ = _ := by\n    congr! 3 with p mp\n    refine setAverage_congr_fun coeGrid_measurable (.of_forall fun y my \u21a6 ?_)\n    rw [Finset.mem_filter_univ, \ud835\udcd9\u2086, mem_inter_iff, mem_Iic] at mp\n    rw [indicator_of_mem (mp.2.1 my)]"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/RosserSchoenfeld/RosserSchoenfeldPrime.lean",
+  "theorem": "meisselMertensConstant_identity",
+  "decl_line": 805,
+  "by_line": 808,
+  "indent": 2,
+  "proof_start": 809,
+  "proof_end": 820,
+  "file_lines": 1017,
+  "steps": [
+   {
+    "line": 809,
+    "text": "have integral_eq_loglog : \u222b y in 2..x, 1 / y / log y = log (log x) - log (log 2) := by\n  have {y} (hy : y \u2208 Set.uIcc 2 x) := (Set.uIcc_of_le hx \u25b8 hy).1\n  have {y} (hy : y \u2208 Set.uIcc 2 x) : log y \u2260 0 :=\n    log_ne_zero_of_pos_of_ne_one (by grind) (by grind)\n  refine intervalIntegral.integral_eq_sub_of_hasDerivAt (f := Real.log \u2218 log) (fun y hy => ?_) ?_\n  \u00b7 convert! (hasDerivAt_log (this hy)).comp y (hasDerivAt_log (by grind)) using 1\n    field_simp\n  \u00b7 exact ContinuousOn.intervalIntegrable_of_Icc hx (by fun_prop (disch := aesop))"
+   },
+   {
+    "line": 817,
+    "text": "rw [eq_415 (by fun_prop (disch := grind)) hx integrableOn_deriv_inv_div_log.1\n  (integrableOn_deriv_inv_div_log.2 x hx), integral_eq_loglog, meisselMertensConstant]"
+   },
+   {
+    "line": 819,
+    "text": "ring"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/RosserSchoenfeld/RosserSchoenfeldPrime.lean",
+  "theorem": "eq_419",
+  "decl_line": 855,
+  "by_line": 858,
+  "indent": 2,
+  "proof_start": 859,
+  "proof_end": 869,
+  "file_lines": 1017,
+  "steps": [
+   {
+    "line": 859,
+    "text": "simp_rw [meisselMertensConstant_identity hx, sub_eq_add_neg _ (\u222b y in Set.Ioi x, _),\n  \u2190 integral_neg, \u2190 div_neg, mul_div_assoc]"
+   },
+   {
+    "line": 861,
+    "text": "have : \u222b (y : \u211d) in Set.Ioi x, (\u03b8 y - y) * deriv (fun s \u21a6 1 / s / Real.log s) y =\n  \u222b (a : \u211d) in Set.Ioi x, (\u03b8 a - a) * ((1 + Real.log a) / -(a ^ 2 * Real.log a ^ 2)) := by\n  refine setIntegral_congr_fun measurableSet_Ioi fun y hy => mul_eq_mul_left_iff.2 (Or.inl ?_)\n  have := deriv_fun_inv'' (y.hasDerivAt_mul_log (by grind)).differentiableAt\n    (mul_ne_zero_iff.2 \u27e8by grind, by linarith [Real.log_pos (by grind : 1 < y)]\u27e9)\n  simp_all [deriv_mul_log (by grind : y \u2260 0), div_eq_mul_inv, mul_comm]\n  ring"
+   },
+   {
+    "line": 868,
+    "text": "congr"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/ZetaBounds.lean",
+  "theorem": "analytic_deriv_bounded_near_point",
+  "decl_line": 205,
+  "by_line": 207,
+  "indent": 2,
+  "proof_start": 208,
+  "proof_end": 219,
+  "file_lines": 3683,
+  "steps": [
+   {
+    "line": 208,
+    "text": "have U_in_filter : U \u2208 \ud835\udcdd p := by\n  exact IsOpen.mem_nhds hU hp"
+   },
+   {
+    "line": 210,
+    "text": "have T := (analyticOn_iff_differentiableOn hU).mpr hf"
+   },
+   {
+    "line": 211,
+    "text": "have T2 : ContDiffOn \u2102 1 f U :=\n    DifferentiableOn.contDiffOn hf hU"
+   },
+   {
+    "line": 213,
+    "text": "have T3 : ContinuousOn (fun x \u21a6 ((deriv f) x)) U := by\n  apply T2.continuousOn_deriv_of_isOpen hU (by simp)"
+   },
+   {
+    "line": 215,
+    "text": "have T4 := T3.continuousAt U_in_filter"
+   },
+   {
+    "line": 216,
+    "text": "have T5 : (deriv f) =O[\ud835\udcdd p] (1 : \u2102 \u2192 \u2102) :=\n  T4.norm.isBoundedUnder_le.isBigO_one \u2102"
+   },
+   {
+    "line": 218,
+    "text": "exact Asymptotics.IsBigO.mono T5 inf_le_left"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/ZetaBounds.lean",
+  "theorem": "ZetaBnd_aux1",
+  "decl_line": 1042,
+  "by_line": 1044,
+  "indent": 2,
+  "proof_start": 1045,
+  "proof_end": 1052,
+  "file_lines": 3683,
+  "steps": [
+   {
+    "line": 1045,
+    "text": "rw [norm_mul, mul_div_assoc]"
+   },
+   {
+    "line": 1046,
+    "text": "rw [Set.mem_Ioc] at h\u03c3"
+   },
+   {
+    "line": 1047,
+    "text": "apply mul_le_mul ?_ (ZetaBnd_aux1b N Npos h\u03c3.1) (norm_nonneg _) (by positivity)"
+   },
+   {
+    "line": 1048,
+    "text": "refine le_trans (by apply norm_add_le) ?_"
+   },
+   {
+    "line": 1049,
+    "text": "simp only [Complex.norm_of_nonneg h\u03c3.1.le, Complex.norm_mul, norm_real, Real.norm_eq_abs, norm_I,\n  mul_one]"
+   },
+   {
+    "line": 1051,
+    "text": "linarith [h\u03c3.2]"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/BKLNW/BKLNW_table10_rows_regime3_6600_8500.lean",
+  "theorem": "row7900_a2_le",
+  "decl_line": 232,
+  "by_line": 232,
+  "indent": 2,
+  "proof_start": 233,
+  "proof_end": 247,
+  "file_lines": 1625,
+  "steps": [
+   {
+    "line": 233,
+    "text": "have h := a2_crude_le (7900 : \u211d) (by norm_num)"
+   },
+   {
+    "line": 234,
+    "text": "have hlog2 : (0.6931471803 : \u211d) < log 2 := LogTables.log_2_gt_d9"
+   },
+   {
+    "line": 235,
+    "text": "have hfloor : (\u230a(7900 : \u211d) / log 2\u230b\u208a : \u211d) \u2264 (7900 : \u211d) / log 2 := Nat.floor_le (by positivity)"
+   },
+   {
+    "line": 236,
+    "text": "have hdiv : (7900 : \u211d) / log 2 \u2264 11398 := by\n  rw [div_le_iff\u2080 (by linarith : (0 : \u211d) < log 2)]\n  linarith [hlog2]"
+   },
+   {
+    "line": 239,
+    "text": "have h\u03b1 : Inputs.default.\u03b1 \u2264 1e-7 := by\n  change (1.93378e-8 * BKLNW_app.table_8_margin : \u211d) \u2264 1e-7\n  norm_num [BKLNW_app.table_8_margin]"
+   },
+   {
+    "line": 242,
+    "text": "calc Inputs.default.a\u2082 (7900 : \u211d)\n    \u2264 (1 + Inputs.default.\u03b1) * ((\u230a(7900 : \u211d) / log 2\u230b\u208a : \u211d) + 1) := h\n  _ \u2264 (1 + 1e-7) * (11398 + 1) :=\n      mul_le_mul (by linarith) (by linarith [hfloor, hdiv]) (by positivity) (by linarith)\n  _ \u2264 11400 := by norm_num"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/BKLNW/BKLNW_table10_rows_regime3_6600_8500.lean",
+  "theorem": "row8000_a2_le",
+  "decl_line": 248,
+  "by_line": 248,
+  "indent": 2,
+  "proof_start": 249,
+  "proof_end": 263,
+  "file_lines": 1625,
+  "steps": [
+   {
+    "line": 249,
+    "text": "have h := a2_crude_le (8000 : \u211d) (by norm_num)"
+   },
+   {
+    "line": 250,
+    "text": "have hlog2 : (0.6931471803 : \u211d) < log 2 := LogTables.log_2_gt_d9"
+   },
+   {
+    "line": 251,
+    "text": "have hfloor : (\u230a(8000 : \u211d) / log 2\u230b\u208a : \u211d) \u2264 (8000 : \u211d) / log 2 := Nat.floor_le (by positivity)"
+   },
+   {
+    "line": 252,
+    "text": "have hdiv : (8000 : \u211d) / log 2 \u2264 11542 := by\n  rw [div_le_iff\u2080 (by linarith : (0 : \u211d) < log 2)]\n  linarith [hlog2]"
+   },
+   {
+    "line": 255,
+    "text": "have h\u03b1 : Inputs.default.\u03b1 \u2264 1e-7 := by\n  change (1.93378e-8 * BKLNW_app.table_8_margin : \u211d) \u2264 1e-7\n  norm_num [BKLNW_app.table_8_margin]"
+   },
+   {
+    "line": 258,
+    "text": "calc Inputs.default.a\u2082 (8000 : \u211d)\n    \u2264 (1 + Inputs.default.\u03b1) * ((\u230a(8000 : \u211d) / log 2\u230b\u208a : \u211d) + 1) := h\n  _ \u2264 (1 + 1e-7) * (11542 + 1) :=\n      mul_le_mul (by linarith) (by linarith [hfloor, hdiv]) (by positivity) (by linarith)\n  _ \u2264 11544 := by norm_num"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/KadiriSupport.lean",
+  "theorem": "kadiri_laplace_neg_line_weight_bounded_of_continuous",
+  "decl_line": 140,
+  "by_line": 145,
+  "indent": 2,
+  "proof_start": 146,
+  "proof_end": 154,
+  "file_lines": 352,
+  "steps": [
+   {
+    "line": 146,
+    "text": "have htop := kadiri_laplace_neg_line_weight_isBigO_atTop (\u03c8 := \u03c8) (b := b) sigma\n  (h\u03c8_decay.mono atTop_le_cocompact)"
+   },
+   {
+    "line": 148,
+    "text": "have hbot := kadiri_laplace_neg_line_weight_isBigO_atBot (\u03c8 := \u03c8) (b := b) sigma\n  (h\u03c8_decay.mono atBot_le_cocompact)"
+   },
+   {
+    "line": 150,
+    "text": "exact bounded_of_continuous_of_isBigO_exp_atBot_atTop\n  ((laplaceKernel_contDiff_paren ((sigma : \u211d) : \u2102)).continuous.mul h\u03c8)\n  (show -(1 + b + sigma) < 0 by linarith) (show 0 < b - sigma by linarith)\n  htop hbot"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/KadiriSupport.lean",
+  "theorem": "kadiri_laplace_neg_line_weight_deriv",
+  "decl_line": 173,
+  "by_line": 177,
+  "indent": 2,
+  "proof_start": 178,
+  "proof_end": 182,
+  "file_lines": 352,
+  "steps": [
+   {
+    "line": 178,
+    "text": "rw [deriv_fun_mul (kadiri_exp_neg_mul_hasDerivAt sigma y).differentiableAt\n  ((h\u03c6.differentiable (by norm_num)) y)]"
+   },
+   {
+    "line": 180,
+    "text": "rw [HasDerivAt.deriv (kadiri_exp_neg_mul_hasDerivAt sigma y)]"
+   },
+   {
+    "line": 181,
+    "text": "ring"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Mathlib/Topology/Algebra/RestrictedProduct/Basic.lean",
+  "theorem": "exists_apply_eq",
+  "decl_line": 228,
+  "by_line": 229,
+  "indent": 2,
+  "proof_start": 230,
+  "proof_end": 234,
+  "file_lines": 318,
+  "steps": [
+   {
+    "line": 230,
+    "text": "let y : \u03a0\u02b3 i, [G i, C i]_[\u2131] := \u27e8fun i \u21a6 (Classical.ofNonempty : C i),\n  Filter.Eventually.of_forall (fun x \u21a6 Subtype.coe_prop _)\u27e9"
+   },
+   {
+    "line": 232,
+    "text": "obtain \u27e8x, hx, -\u27e9 := exists_update y i a h"
+   },
+   {
+    "line": 233,
+    "text": "exact \u27e8x, hx\u27e9"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Mathlib/Topology/Algebra/RestrictedProduct/Basic.lean",
+  "theorem": "mem_structureSubring_iff",
+  "decl_line": 305,
+  "by_line": 309,
+  "indent": 2,
+  "proof_start": 310,
+  "proof_end": 314,
+  "file_lines": 318,
+  "steps": [
+   {
+    "line": 310,
+    "text": "rw [RestrictedProduct.structureSubring]"
+   },
+   {
+    "line": 311,
+    "text": "change x \u2208 Set.range (RestrictedProduct.structureMap _ _ _) \u2194 _"
+   },
+   {
+    "line": 312,
+    "text": "rw [RestrictedProduct.range_structureMap]"
+   },
+   {
+    "line": 313,
+    "text": "aesop"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Mathlib/Topology/Algebra/Module/ModuleTopology.lean",
+  "theorem": "continuous_mul",
+  "decl_line": 110,
+  "by_line": 110,
+  "indent": 2,
+  "proof_start": 111,
+  "proof_end": 114,
+  "file_lines": 540,
+  "steps": [
+   {
+    "line": 111,
+    "text": "let : TopologicalSpace (D \u2297[R] D) := moduleTopology R _"
+   },
+   {
+    "line": 112,
+    "text": "have : IsModuleTopology R (D \u2297[R] D) := { eq_moduleTopology' := rfl }"
+   },
+   {
+    "line": 113,
+    "text": "convert! continuous_bilinear_of_finite_left <| (LinearMap.mul R D : D \u2192\u2097[R] D \u2192\u2097[R] D)"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Mathlib/Topology/Algebra/Module/ModuleTopology.lean",
+  "theorem": "iff_Continuous_algebraMap",
+  "decl_line": 129,
+  "by_line": 130,
+  "indent": 2,
+  "proof_start": 131,
+  "proof_end": 136,
+  "file_lines": 540,
+  "steps": [
+   {
+    "line": 131,
+    "text": "refine \u27e8fun _ \u21a6 continuous_algebraMap R S, fun h \u21a6 ?_\u27e9"
+   },
+   {
+    "line": 132,
+    "text": "have : Continuous (fun rs \u21a6 algebraMap R S rs.1 \u2022 rs.2 : R \u00d7 S \u2192 S) := by fun_prop"
+   },
+   {
+    "line": 133,
+    "text": "simp_rw [\u2190 algebra_compatible_smul S] at this"
+   },
+   {
+    "line": 134,
+    "text": "have : ContinuousSMul R S := \u27e8this\u27e9"
+   },
+   {
+    "line": 135,
+    "text": "exact IsTopologicalModule.mk"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/KnownIn1980s/EllipticCurves/TateParameter.lean",
+  "theorem": "valuation_evalInt_eq",
+  "decl_line": 278,
+  "by_line": 280,
+  "indent": 2,
+  "proof_start": 281,
+  "proof_end": 294,
+  "file_lines": 379,
+  "steps": [
+   {
+    "line": 281,
+    "text": "have hsplit : evalInt q F = q + evalInt q (F - PowerSeries.X) := by\n  conv_lhs => rw [show F = PowerSeries.X + (F - PowerSeries.X) by ring]\n  rw [evalInt_add (summable_evalInt q hq _) (summable_evalInt q hq _), evalInt_X]"
+   },
+   {
+    "line": 284,
+    "text": "have hlow : \u2200 m < 2, PowerSeries.coeff m (F - PowerSeries.X) = 0 := by\n  intro m hm\n  rcases m with - | - | m\n  \u00b7 simp [PowerSeries.coeff_zero_eq_constantCoeff, h0]\n  \u00b7 simp [h1, PowerSeries.coeff_X]\n  \u00b7 exact absurd hm (by omega)"
+   },
+   {
+    "line": 290,
+    "text": "have hr : valuation k (evalInt q (F - PowerSeries.X)) < valuation k q :=\n  lt_of_le_of_lt (valuation_evalInt_le_pow q hq hlow)\n    (pow_lt_self_of_lt_one\u2080 (zero_lt_iff.mpr ((valuation k).ne_zero_iff.mpr hq0)) hq one_lt_two)"
+   },
+   {
+    "line": 293,
+    "text": "rw [hsplit, (valuation k).map_add_eq_of_lt_left hr]"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/KnownIn1980s/EllipticCurves/TateParameter.lean",
+  "theorem": "evalInt_mul",
+  "decl_line": 329,
+  "by_line": 330,
+  "indent": 2,
+  "proof_start": 331,
+  "proof_end": 348,
+  "file_lines": 379,
+  "steps": [
+   {
+    "line": 331,
+    "text": "let : UniformSpace k := IsTopologicalAddGroup.rightUniformSpace k"
+   },
+   {
+    "line": 332,
+    "text": "have : IsUniformAddGroup k := isUniformAddGroup_of_addCommGroup"
+   },
+   {
+    "line": 333,
+    "text": "have : IsUniformAddGroup \ud835\udcaa[k] := inferInstanceAs (IsUniformAddGroup \ud835\udcaa[k].toAddSubgroup)"
+   },
+   {
+    "line": 334,
+    "text": "have hind : Topology.IsInducing ((\u2191) : \ud835\udcaa[k] \u2192 k) := \u27e8rfl\u27e9"
+   },
+   {
+    "line": 335,
+    "text": "have h\u03c6 : Continuous (Int.castRingHom \ud835\udcaa[k]) := continuous_of_discreteTopology"
+   },
+   {
+    "line": 336,
+    "text": "have ha : PowerSeries.HasEval (\u27e8q, hq.le\u27e9 : \ud835\udcaa[k]) :=\n  hind.tendsto_nhds_iff.mpr (by simpa [Function.comp_def] using tendsto_pow_nhds_zero hq)"
+   },
+   {
+    "line": 338,
+    "text": "have key : \u2200 H : \u2124\u27e6X\u27e7, evalInt q H = (PowerSeries.eval\u2082Hom h\u03c6 ha H : k) := by\n  intro H\n  change (\u2211' n : \u2115, ((PowerSeries.coeff n H : \u2124) : k) * q ^ n) = _\n  rw [PowerSeries.coe_eval\u2082Hom h\u03c6 ha]\n  refine HasSum.tsum_eq ?_\n  simpa [Function.comp_def] using (PowerSeries.hasSum_eval\u2082 h\u03c6 ha H).map\n    (Subring.subtype \ud835\udcaa[k]).toAddMonoidHom continuous_subtype_val"
+   },
+   {
+    "line": 345,
+    "text": "simp only [key, map_mul]"
+   },
+   {
+    "line": 346,
+    "text": "push_cast"
+   },
+   {
+    "line": 347,
+    "text": "ring"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Slop/PGL2/FiniteSubgroups/PartitionProof.lean",
+  "theorem": "element_fixedPt_sum",
+  "decl_line": 268,
+  "by_line": 274,
+  "indent": 2,
+  "proof_start": 275,
+  "proof_end": 304,
+  "file_lines": 723,
+  "steps": [
+   {
+    "line": 275,
+    "text": "intro _"
+   },
+   {
+    "line": 276,
+    "text": "refine' eq_tsub_of_add_eq _"
+   },
+   {
+    "line": 277,
+    "text": "have h_eq : \u2200 g \u2208 (Finset.univ : Finset G).erase 1, Set.ncard (fixedPoints p (g : PGLOf (K p))) = if orderOf (g : PGLOf (K p)) = p then 1 else 2 := fun g hg \u21a6 by\n  have hg_ne : g \u2260 1 := Finset.ne_of_mem_erase hg\n  have h_dich := fixedPoints_dichotomy p (g : PGLOf (K p)) (fun h \u21a6 hg_ne (Subtype.ext h)) (Submonoid.isOfFinOrder_coe.mpr (isOfFinOrder_of_finite g))\n  split_ifs with h_p\n  \u00b7 exact h_dich.1.mpr h_p\n  \u00b7 exact h_dich.2.mpr ((element_dichotomy p G g).resolve_left h_p).symm"
+   },
+   {
+    "line": 283,
+    "text": "rw [Finset.sum_congr rfl h_eq, Finset.sum_ite, Finset.sum_const, Finset.sum_const]"
+   },
+   {
+    "line": 284,
+    "text": "simp only [smul_eq_mul, mul_one]"
+   },
+   {
+    "line": 285,
+    "text": "have h_card_p : Nat.card \u21a5(((Finset.univ : Finset G).erase 1).filter (fun (x : G) \u21a6 orderOf (x : PGLOf (K p)) = p)) = Nat.card {g : G | g \u2260 1 \u2227 orderOf (g : PGLOf (K p)) = p} := by\n  have h_set : ((((Finset.univ : Finset G).erase 1).filter (fun (x : G) \u21a6 orderOf (x : PGLOf (K p)) = p)) : Set G) = {g : G | g \u2260 1 \u2227 orderOf (g : PGLOf (K p)) = p} := by\n    ext g\n    simp only [Finset.mem_coe, Finset.mem_filter, Set.mem_ofPred_eq, Finset.mem_erase]\n    exact \u27e8fun h \u21a6 \u27e8h.1.1, h.2\u27e9, fun h \u21a6 \u27e8\u27e8h.1, Finset.mem_univ g\u27e9, h.2\u27e9\u27e9\n  exact congrArg (fun (s : Set G) \u21a6 Nat.card \u21a5s) h_set"
+   },
+   {
+    "line": 291,
+    "text": "have h_card_cop : Nat.card \u21a5(((Finset.univ : Finset G).erase 1).filter (fun (x : G) \u21a6 \u00acorderOf (x : PGLOf (K p)) = p)) = Nat.card {g : G | g \u2260 1 \u2227 Nat.Coprime (orderOf (g : PGLOf (K p))) p} := by\n  have h_set : ((((Finset.univ : Finset G).erase 1).filter (fun (x : G) \u21a6 \u00acorderOf (x : PGLOf (K p)) = p)) : Set G) = {g : G | g \u2260 1 \u2227 Nat.Coprime (orderOf (g : PGLOf (K p))) p} := by\n    ext g\n    simp only [Finset.mem_coe, Finset.mem_filter, Set.mem_ofPred_eq, Finset.mem_erase]\n    exact \u27e8fun h \u21a6 \u27e8h.1.1, (element_dichotomy p G g).resolve_left h.2\u27e9,\n           fun \u27e8h_ne, h_cop\u27e9 \u21a6 \u27e8\u27e8h_ne, Finset.mem_univ g\u27e9, fun h_p \u21a6 by\n             rw [h_p] at h_cop\n             have : Nat.gcd p p = p := Nat.gcd_self p\n             have : p > 2 := Fact.out\n             omega\u27e9\u27e9\n  exact congrArg (fun (s : Set G) \u21a6 Nat.card \u21a5s) h_set"
+   },
+   {
+    "line": 302,
+    "text": "rw [\u2190 Nat.card_eq_finsetCard, \u2190 Nat.card_eq_finsetCard, h_card_p, h_card_cop, \u2190 count_elements_order_p p G hG_p P, element_partition_count p G]"
+   },
+   {
+    "line": 303,
+    "text": "omega"
+   }
+  ]
+ },
+ {
+  "project": "FLT",
+  "file": "FLT/Slop/PGL2/FiniteSubgroups/PartitionProof.lean",
+  "theorem": "nonsplit_D_lt_n",
+  "decl_line": 332,
+  "by_line": 335,
+  "indent": 2,
+  "proof_start": 336,
+  "proof_end": 355,
+  "file_lines": 723,
+  "steps": [
+   {
+    "line": 336,
+    "text": "have h_n_gt_pm : Nat.card P \u2265 3 := sylow_card_ge_3 p G hG_p P"
+   },
+   {
+    "line": 337,
+    "text": "have h_n_gt_2p : Fintype.card (Sylow p G) \u2265 Nat.card P + 1 := by\n  have h_le := Nat.le_of_dvd (Nat.sub_pos_of_lt hn_p_gt1) (card_sylow_mod_card p G hG_p P)\n  omega"
+   },
+   {
+    "line": 340,
+    "text": "have h_dvd_both : Nat.card P \u2223 Nat.card G \u2227 Fintype.card (Sylow p G) \u2223 Nat.card G := by\n  refine \u27e8Subgroup.card_subgroup_dvd_card (P : Subgroup G), ?_\u27e9\n  rw [\u2190 Nat.card_eq_fintype_card, Nat.card_congr (Sylow.equivQuotientNormalizer P)]\n  exact Subgroup.card_quotient_dvd_card (Subgroup.normalizer ((P : Subgroup G) : Set G))"
+   },
+   {
+    "line": 344,
+    "text": "have h_copr : Nat.Coprime (Fintype.card (Sylow p G) - 1) (Fintype.card (Sylow p G)) := by\n  apply Nat.coprime_of_dvd\n  intro k h1 h2 h3\n  have h_dvd : k \u2223 Fintype.card (Sylow p G) - (Fintype.card (Sylow p G) - 1) := Nat.dvd_sub h3 h2\n  have h_k_eq_1 : k = 1 := Nat.eq_one_of_dvd_one <| (by omega : Fintype.card (Sylow p G) - (Fintype.card (Sylow p G) - 1) = 1) \u25b8 h_dvd\n  subst h_k_eq_1\n  exact Nat.not_prime_one h1"
+   },
+   {
+    "line": 351,
+    "text": "have h_coprime_full := Nat.Coprime.coprime_dvd_left (card_sylow_mod_card p G hG_p P) h_copr"
+   },
+   {
+    "line": 352,
+    "text": "have h_mul_le_card : Nat.card P * Fintype.card (Sylow p G) \u2264 Nat.card G :=\n  Nat.le_of_dvd Nat.card_pos (Nat.Coprime.mul_dvd_of_dvd_of_dvd h_coprime_full h_dvd_both.1 h_dvd_both.2)"
+   },
+   {
+    "line": 354,
+    "text": "nlinarith only [h_n_gt_pm, h_n_gt_2p, h_mul_le_card, Nat.sub_add_cancel (by omega : 2 \u2264 Nat.card P)]"
+   }
+  ]
+ }
+]

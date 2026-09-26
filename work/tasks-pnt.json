@@ -1,0 +1,254 @@
+[
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/RosserSchoenfeld/RosserSchoenfeldPrime.lean",
+  "theorem": "meisselMertensConstant_identity",
+  "decl_line": 805,
+  "by_line": 808,
+  "indent": 2,
+  "proof_start": 809,
+  "proof_end": 820,
+  "file_lines": 1017,
+  "steps": [
+   {
+    "line": 809,
+    "text": "have integral_eq_loglog : \u222b y in 2..x, 1 / y / log y = log (log x) - log (log 2) := by\n  have {y} (hy : y \u2208 Set.uIcc 2 x) := (Set.uIcc_of_le hx \u25b8 hy).1\n  have {y} (hy : y \u2208 Set.uIcc 2 x) : log y \u2260 0 :=\n    log_ne_zero_of_pos_of_ne_one (by grind) (by grind)\n  refine intervalIntegral.integral_eq_sub_of_hasDerivAt (f := Real.log \u2218 log) (fun y hy => ?_) ?_\n  \u00b7 convert! (hasDerivAt_log (this hy)).comp y (hasDerivAt_log (by grind)) using 1\n    field_simp\n  \u00b7 exact ContinuousOn.intervalIntegrable_of_Icc hx (by fun_prop (disch := aesop))"
+   },
+   {
+    "line": 817,
+    "text": "rw [eq_415 (by fun_prop (disch := grind)) hx integrableOn_deriv_inv_div_log.1\n  (integrableOn_deriv_inv_div_log.2 x hx), integral_eq_loglog, meisselMertensConstant]"
+   },
+   {
+    "line": 819,
+    "text": "ring"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/RosserSchoenfeld/RosserSchoenfeldPrime.lean",
+  "theorem": "eq_419",
+  "decl_line": 855,
+  "by_line": 858,
+  "indent": 2,
+  "proof_start": 859,
+  "proof_end": 869,
+  "file_lines": 1017,
+  "steps": [
+   {
+    "line": 859,
+    "text": "simp_rw [meisselMertensConstant_identity hx, sub_eq_add_neg _ (\u222b y in Set.Ioi x, _),\n  \u2190 integral_neg, \u2190 div_neg, mul_div_assoc]"
+   },
+   {
+    "line": 861,
+    "text": "have : \u222b (y : \u211d) in Set.Ioi x, (\u03b8 y - y) * deriv (fun s \u21a6 1 / s / Real.log s) y =\n  \u222b (a : \u211d) in Set.Ioi x, (\u03b8 a - a) * ((1 + Real.log a) / -(a ^ 2 * Real.log a ^ 2)) := by\n  refine setIntegral_congr_fun measurableSet_Ioi fun y hy => mul_eq_mul_left_iff.2 (Or.inl ?_)\n  have := deriv_fun_inv'' (y.hasDerivAt_mul_log (by grind)).differentiableAt\n    (mul_ne_zero_iff.2 \u27e8by grind, by linarith [Real.log_pos (by grind : 1 < y)]\u27e9)\n  simp_all [deriv_mul_log (by grind : y \u2260 0), div_eq_mul_inv, mul_comm]\n  ring"
+   },
+   {
+    "line": 868,
+    "text": "congr"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/ZetaBounds.lean",
+  "theorem": "analytic_deriv_bounded_near_point",
+  "decl_line": 205,
+  "by_line": 207,
+  "indent": 2,
+  "proof_start": 208,
+  "proof_end": 219,
+  "file_lines": 3683,
+  "steps": [
+   {
+    "line": 208,
+    "text": "have U_in_filter : U \u2208 \ud835\udcdd p := by\n  exact IsOpen.mem_nhds hU hp"
+   },
+   {
+    "line": 210,
+    "text": "have T := (analyticOn_iff_differentiableOn hU).mpr hf"
+   },
+   {
+    "line": 211,
+    "text": "have T2 : ContDiffOn \u2102 1 f U :=\n    DifferentiableOn.contDiffOn hf hU"
+   },
+   {
+    "line": 213,
+    "text": "have T3 : ContinuousOn (fun x \u21a6 ((deriv f) x)) U := by\n  apply T2.continuousOn_deriv_of_isOpen hU (by simp)"
+   },
+   {
+    "line": 215,
+    "text": "have T4 := T3.continuousAt U_in_filter"
+   },
+   {
+    "line": 216,
+    "text": "have T5 : (deriv f) =O[\ud835\udcdd p] (1 : \u2102 \u2192 \u2102) :=\n  T4.norm.isBoundedUnder_le.isBigO_one \u2102"
+   },
+   {
+    "line": 218,
+    "text": "exact Asymptotics.IsBigO.mono T5 inf_le_left"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/ZetaBounds.lean",
+  "theorem": "ZetaBnd_aux1",
+  "decl_line": 1042,
+  "by_line": 1044,
+  "indent": 2,
+  "proof_start": 1045,
+  "proof_end": 1052,
+  "file_lines": 3683,
+  "steps": [
+   {
+    "line": 1045,
+    "text": "rw [norm_mul, mul_div_assoc]"
+   },
+   {
+    "line": 1046,
+    "text": "rw [Set.mem_Ioc] at h\u03c3"
+   },
+   {
+    "line": 1047,
+    "text": "apply mul_le_mul ?_ (ZetaBnd_aux1b N Npos h\u03c3.1) (norm_nonneg _) (by positivity)"
+   },
+   {
+    "line": 1048,
+    "text": "refine le_trans (by apply norm_add_le) ?_"
+   },
+   {
+    "line": 1049,
+    "text": "simp only [Complex.norm_of_nonneg h\u03c3.1.le, Complex.norm_mul, norm_real, Real.norm_eq_abs, norm_I,\n  mul_one]"
+   },
+   {
+    "line": 1051,
+    "text": "linarith [h\u03c3.2]"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/BKLNW/BKLNW_table10_rows_regime3_6600_8500.lean",
+  "theorem": "row7900_a2_le",
+  "decl_line": 232,
+  "by_line": 232,
+  "indent": 2,
+  "proof_start": 233,
+  "proof_end": 247,
+  "file_lines": 1625,
+  "steps": [
+   {
+    "line": 233,
+    "text": "have h := a2_crude_le (7900 : \u211d) (by norm_num)"
+   },
+   {
+    "line": 234,
+    "text": "have hlog2 : (0.6931471803 : \u211d) < log 2 := LogTables.log_2_gt_d9"
+   },
+   {
+    "line": 235,
+    "text": "have hfloor : (\u230a(7900 : \u211d) / log 2\u230b\u208a : \u211d) \u2264 (7900 : \u211d) / log 2 := Nat.floor_le (by positivity)"
+   },
+   {
+    "line": 236,
+    "text": "have hdiv : (7900 : \u211d) / log 2 \u2264 11398 := by\n  rw [div_le_iff\u2080 (by linarith : (0 : \u211d) < log 2)]\n  linarith [hlog2]"
+   },
+   {
+    "line": 239,
+    "text": "have h\u03b1 : Inputs.default.\u03b1 \u2264 1e-7 := by\n  change (1.93378e-8 * BKLNW_app.table_8_margin : \u211d) \u2264 1e-7\n  norm_num [BKLNW_app.table_8_margin]"
+   },
+   {
+    "line": 242,
+    "text": "calc Inputs.default.a\u2082 (7900 : \u211d)\n    \u2264 (1 + Inputs.default.\u03b1) * ((\u230a(7900 : \u211d) / log 2\u230b\u208a : \u211d) + 1) := h\n  _ \u2264 (1 + 1e-7) * (11398 + 1) :=\n      mul_le_mul (by linarith) (by linarith [hfloor, hdiv]) (by positivity) (by linarith)\n  _ \u2264 11400 := by norm_num"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/BKLNW/BKLNW_table10_rows_regime3_6600_8500.lean",
+  "theorem": "row8000_a2_le",
+  "decl_line": 248,
+  "by_line": 248,
+  "indent": 2,
+  "proof_start": 249,
+  "proof_end": 263,
+  "file_lines": 1625,
+  "steps": [
+   {
+    "line": 249,
+    "text": "have h := a2_crude_le (8000 : \u211d) (by norm_num)"
+   },
+   {
+    "line": 250,
+    "text": "have hlog2 : (0.6931471803 : \u211d) < log 2 := LogTables.log_2_gt_d9"
+   },
+   {
+    "line": 251,
+    "text": "have hfloor : (\u230a(8000 : \u211d) / log 2\u230b\u208a : \u211d) \u2264 (8000 : \u211d) / log 2 := Nat.floor_le (by positivity)"
+   },
+   {
+    "line": 252,
+    "text": "have hdiv : (8000 : \u211d) / log 2 \u2264 11542 := by\n  rw [div_le_iff\u2080 (by linarith : (0 : \u211d) < log 2)]\n  linarith [hlog2]"
+   },
+   {
+    "line": 255,
+    "text": "have h\u03b1 : Inputs.default.\u03b1 \u2264 1e-7 := by\n  change (1.93378e-8 * BKLNW_app.table_8_margin : \u211d) \u2264 1e-7\n  norm_num [BKLNW_app.table_8_margin]"
+   },
+   {
+    "line": 258,
+    "text": "calc Inputs.default.a\u2082 (8000 : \u211d)\n    \u2264 (1 + Inputs.default.\u03b1) * ((\u230a(8000 : \u211d) / log 2\u230b\u208a : \u211d) + 1) := h\n  _ \u2264 (1 + 1e-7) * (11542 + 1) :=\n      mul_le_mul (by linarith) (by linarith [hfloor, hdiv]) (by positivity) (by linarith)\n  _ \u2264 11544 := by norm_num"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/KadiriSupport.lean",
+  "theorem": "kadiri_laplace_neg_line_weight_bounded_of_continuous",
+  "decl_line": 140,
+  "by_line": 145,
+  "indent": 2,
+  "proof_start": 146,
+  "proof_end": 154,
+  "file_lines": 352,
+  "steps": [
+   {
+    "line": 146,
+    "text": "have htop := kadiri_laplace_neg_line_weight_isBigO_atTop (\u03c8 := \u03c8) (b := b) sigma\n  (h\u03c8_decay.mono atTop_le_cocompact)"
+   },
+   {
+    "line": 148,
+    "text": "have hbot := kadiri_laplace_neg_line_weight_isBigO_atBot (\u03c8 := \u03c8) (b := b) sigma\n  (h\u03c8_decay.mono atBot_le_cocompact)"
+   },
+   {
+    "line": 150,
+    "text": "exact bounded_of_continuous_of_isBigO_exp_atBot_atTop\n  ((laplaceKernel_contDiff_paren ((sigma : \u211d) : \u2102)).continuous.mul h\u03c8)\n  (show -(1 + b + sigma) < 0 by linarith) (show 0 < b - sigma by linarith)\n  htop hbot"
+   }
+  ]
+ },
+ {
+  "project": "PrimeNumberTheoremAnd",
+  "file": "PrimeNumberTheoremAnd/IEANTN/KadiriSupport.lean",
+  "theorem": "kadiri_laplace_neg_line_weight_deriv",
+  "decl_line": 173,
+  "by_line": 177,
+  "indent": 2,
+  "proof_start": 178,
+  "proof_end": 182,
+  "file_lines": 352,
+  "steps": [
+   {
+    "line": 178,
+    "text": "rw [deriv_fun_mul (kadiri_exp_neg_mul_hasDerivAt sigma y).differentiableAt\n  ((h\u03c6.differentiable (by norm_num)) y)]"
+   },
+   {
+    "line": 180,
+    "text": "rw [HasDerivAt.deriv (kadiri_exp_neg_mul_hasDerivAt sigma y)]"
+   },
+   {
+    "line": 181,
+    "text": "ring"
+   }
+  ]
+ }
+]

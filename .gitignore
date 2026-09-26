@@ -1,0 +1,23 @@
+# External project checkouts, installed tools, and generated build artifacts.
+/projects/
+/beam/
+/repl/
+/venv/
+/.venv/
+/.agents/
+/.codex/
+**/.lake/
+__pycache__/
+*.py[cod]
+
+# Local extraction experiments and smoke runs; full benchmark results are tracked.
+/work/build-*.log
+/work/one-task.json
+/work/probe_one.py
+/work/sync_shape.py
+/work/smoke*.json
+
+# Local credentials and editor state.
+.env
+.env.*
+.DS_Store
